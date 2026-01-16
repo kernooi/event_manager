@@ -237,6 +237,7 @@ export type RegistrationFieldWhereInput = {
   order?: Prisma.IntFilter<"RegistrationField"> | number
   createdAt?: Prisma.DateTimeFilter<"RegistrationField"> | Date | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
+  answers?: Prisma.RegistrationAnswerListRelationFilter
 }
 
 export type RegistrationFieldOrderByWithRelationInput = {
@@ -249,6 +250,7 @@ export type RegistrationFieldOrderByWithRelationInput = {
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   event?: Prisma.EventOrderByWithRelationInput
+  answers?: Prisma.RegistrationAnswerOrderByRelationAggregateInput
 }
 
 export type RegistrationFieldWhereUniqueInput = Prisma.AtLeast<{
@@ -264,6 +266,7 @@ export type RegistrationFieldWhereUniqueInput = Prisma.AtLeast<{
   order?: Prisma.IntFilter<"RegistrationField"> | number
   createdAt?: Prisma.DateTimeFilter<"RegistrationField"> | Date | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
+  answers?: Prisma.RegistrationAnswerListRelationFilter
 }, "id">
 
 export type RegistrationFieldOrderByWithAggregationInput = {
@@ -305,6 +308,7 @@ export type RegistrationFieldCreateInput = {
   order?: number
   createdAt?: Date | string
   event: Prisma.EventCreateNestedOneWithoutRegistrationFieldsInput
+  answers?: Prisma.RegistrationAnswerCreateNestedManyWithoutFieldInput
 }
 
 export type RegistrationFieldUncheckedCreateInput = {
@@ -316,6 +320,7 @@ export type RegistrationFieldUncheckedCreateInput = {
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   order?: number
   createdAt?: Date | string
+  answers?: Prisma.RegistrationAnswerUncheckedCreateNestedManyWithoutFieldInput
 }
 
 export type RegistrationFieldUpdateInput = {
@@ -327,6 +332,7 @@ export type RegistrationFieldUpdateInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   event?: Prisma.EventUpdateOneRequiredWithoutRegistrationFieldsNestedInput
+  answers?: Prisma.RegistrationAnswerUpdateManyWithoutFieldNestedInput
 }
 
 export type RegistrationFieldUncheckedUpdateInput = {
@@ -338,6 +344,7 @@ export type RegistrationFieldUncheckedUpdateInput = {
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.RegistrationAnswerUncheckedUpdateManyWithoutFieldNestedInput
 }
 
 export type RegistrationFieldCreateManyInput = {
@@ -421,6 +428,11 @@ export type RegistrationFieldSumOrderByAggregateInput = {
   order?: Prisma.SortOrder
 }
 
+export type RegistrationFieldScalarRelationFilter = {
+  is?: Prisma.RegistrationFieldWhereInput
+  isNot?: Prisma.RegistrationFieldWhereInput
+}
+
 export type RegistrationFieldCreateNestedManyWithoutEventInput = {
   create?: Prisma.XOR<Prisma.RegistrationFieldCreateWithoutEventInput, Prisma.RegistrationFieldUncheckedCreateWithoutEventInput> | Prisma.RegistrationFieldCreateWithoutEventInput[] | Prisma.RegistrationFieldUncheckedCreateWithoutEventInput[]
   connectOrCreate?: Prisma.RegistrationFieldCreateOrConnectWithoutEventInput | Prisma.RegistrationFieldCreateOrConnectWithoutEventInput[]
@@ -471,6 +483,28 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type RegistrationFieldCreateNestedOneWithoutAnswersInput = {
+  create?: Prisma.XOR<Prisma.RegistrationFieldCreateWithoutAnswersInput, Prisma.RegistrationFieldUncheckedCreateWithoutAnswersInput>
+  connectOrCreate?: Prisma.RegistrationFieldCreateOrConnectWithoutAnswersInput
+  connect?: Prisma.RegistrationFieldWhereUniqueInput
+}
+
+export type RegistrationFieldUpdateOneRequiredWithoutAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.RegistrationFieldCreateWithoutAnswersInput, Prisma.RegistrationFieldUncheckedCreateWithoutAnswersInput>
+  connectOrCreate?: Prisma.RegistrationFieldCreateOrConnectWithoutAnswersInput
+  upsert?: Prisma.RegistrationFieldUpsertWithoutAnswersInput
+  connect?: Prisma.RegistrationFieldWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RegistrationFieldUpdateToOneWithWhereWithoutAnswersInput, Prisma.RegistrationFieldUpdateWithoutAnswersInput>, Prisma.RegistrationFieldUncheckedUpdateWithoutAnswersInput>
+}
+
 export type RegistrationFieldCreateWithoutEventInput = {
   id?: string
   label: string
@@ -479,6 +513,7 @@ export type RegistrationFieldCreateWithoutEventInput = {
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   order?: number
   createdAt?: Date | string
+  answers?: Prisma.RegistrationAnswerCreateNestedManyWithoutFieldInput
 }
 
 export type RegistrationFieldUncheckedCreateWithoutEventInput = {
@@ -489,6 +524,7 @@ export type RegistrationFieldUncheckedCreateWithoutEventInput = {
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   order?: number
   createdAt?: Date | string
+  answers?: Prisma.RegistrationAnswerUncheckedCreateNestedManyWithoutFieldInput
 }
 
 export type RegistrationFieldCreateOrConnectWithoutEventInput = {
@@ -531,6 +567,66 @@ export type RegistrationFieldScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"RegistrationField"> | Date | string
 }
 
+export type RegistrationFieldCreateWithoutAnswersInput = {
+  id?: string
+  label: string
+  type: $Enums.FieldType
+  required?: boolean
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  order?: number
+  createdAt?: Date | string
+  event: Prisma.EventCreateNestedOneWithoutRegistrationFieldsInput
+}
+
+export type RegistrationFieldUncheckedCreateWithoutAnswersInput = {
+  id?: string
+  eventId: string
+  label: string
+  type: $Enums.FieldType
+  required?: boolean
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  order?: number
+  createdAt?: Date | string
+}
+
+export type RegistrationFieldCreateOrConnectWithoutAnswersInput = {
+  where: Prisma.RegistrationFieldWhereUniqueInput
+  create: Prisma.XOR<Prisma.RegistrationFieldCreateWithoutAnswersInput, Prisma.RegistrationFieldUncheckedCreateWithoutAnswersInput>
+}
+
+export type RegistrationFieldUpsertWithoutAnswersInput = {
+  update: Prisma.XOR<Prisma.RegistrationFieldUpdateWithoutAnswersInput, Prisma.RegistrationFieldUncheckedUpdateWithoutAnswersInput>
+  create: Prisma.XOR<Prisma.RegistrationFieldCreateWithoutAnswersInput, Prisma.RegistrationFieldUncheckedCreateWithoutAnswersInput>
+  where?: Prisma.RegistrationFieldWhereInput
+}
+
+export type RegistrationFieldUpdateToOneWithWhereWithoutAnswersInput = {
+  where?: Prisma.RegistrationFieldWhereInput
+  data: Prisma.XOR<Prisma.RegistrationFieldUpdateWithoutAnswersInput, Prisma.RegistrationFieldUncheckedUpdateWithoutAnswersInput>
+}
+
+export type RegistrationFieldUpdateWithoutAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumFieldTypeFieldUpdateOperationsInput | $Enums.FieldType
+  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event?: Prisma.EventUpdateOneRequiredWithoutRegistrationFieldsNestedInput
+}
+
+export type RegistrationFieldUncheckedUpdateWithoutAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  eventId?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumFieldTypeFieldUpdateOperationsInput | $Enums.FieldType
+  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type RegistrationFieldCreateManyEventInput = {
   id?: string
   label: string
@@ -549,6 +645,7 @@ export type RegistrationFieldUpdateWithoutEventInput = {
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.RegistrationAnswerUpdateManyWithoutFieldNestedInput
 }
 
 export type RegistrationFieldUncheckedUpdateWithoutEventInput = {
@@ -559,6 +656,7 @@ export type RegistrationFieldUncheckedUpdateWithoutEventInput = {
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.RegistrationAnswerUncheckedUpdateManyWithoutFieldNestedInput
 }
 
 export type RegistrationFieldUncheckedUpdateManyWithoutEventInput = {
@@ -572,6 +670,35 @@ export type RegistrationFieldUncheckedUpdateManyWithoutEventInput = {
 }
 
 
+/**
+ * Count Type RegistrationFieldCountOutputType
+ */
+
+export type RegistrationFieldCountOutputType = {
+  answers: number
+}
+
+export type RegistrationFieldCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  answers?: boolean | RegistrationFieldCountOutputTypeCountAnswersArgs
+}
+
+/**
+ * RegistrationFieldCountOutputType without action
+ */
+export type RegistrationFieldCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RegistrationFieldCountOutputType
+   */
+  select?: Prisma.RegistrationFieldCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * RegistrationFieldCountOutputType without action
+ */
+export type RegistrationFieldCountOutputTypeCountAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RegistrationAnswerWhereInput
+}
+
 
 export type RegistrationFieldSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -583,6 +710,8 @@ export type RegistrationFieldSelect<ExtArgs extends runtime.Types.Extensions.Int
   order?: boolean
   createdAt?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  answers?: boolean | Prisma.RegistrationField$answersArgs<ExtArgs>
+  _count?: boolean | Prisma.RegistrationFieldCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["registrationField"]>
 
 export type RegistrationFieldSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -623,6 +752,8 @@ export type RegistrationFieldSelectScalar = {
 export type RegistrationFieldOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "label" | "type" | "required" | "options" | "order" | "createdAt", ExtArgs["result"]["registrationField"]>
 export type RegistrationFieldInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
+  answers?: boolean | Prisma.RegistrationField$answersArgs<ExtArgs>
+  _count?: boolean | Prisma.RegistrationFieldCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RegistrationFieldIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
@@ -635,6 +766,7 @@ export type $RegistrationFieldPayload<ExtArgs extends runtime.Types.Extensions.I
   name: "RegistrationField"
   objects: {
     event: Prisma.$EventPayload<ExtArgs>
+    answers: Prisma.$RegistrationAnswerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1040,6 +1172,7 @@ readonly fields: RegistrationFieldFieldRefs;
 export interface Prisma__RegistrationFieldClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   event<T extends Prisma.EventDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDefaultArgs<ExtArgs>>): Prisma.Prisma__EventClient<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  answers<T extends Prisma.RegistrationField$answersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RegistrationField$answersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistrationAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1470,6 +1603,30 @@ export type RegistrationFieldDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many RegistrationFields to delete.
    */
   limit?: number
+}
+
+/**
+ * RegistrationField.answers
+ */
+export type RegistrationField$answersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RegistrationAnswer
+   */
+  select?: Prisma.RegistrationAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RegistrationAnswer
+   */
+  omit?: Prisma.RegistrationAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RegistrationAnswerInclude<ExtArgs> | null
+  where?: Prisma.RegistrationAnswerWhereInput
+  orderBy?: Prisma.RegistrationAnswerOrderByWithRelationInput | Prisma.RegistrationAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.RegistrationAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RegistrationAnswerScalarFieldEnum | Prisma.RegistrationAnswerScalarFieldEnum[]
 }
 
 /**

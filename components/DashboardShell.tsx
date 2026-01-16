@@ -26,7 +26,7 @@ export default function DashboardShell({
     <div className="min-h-screen bg-[#f4efe4] text-[#1b1a18]">
       <header className="border-b border-[#e3d6c8] bg-[#fbf8f2]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
+          <Link href="/dashboard" className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1b1a18] text-xs font-semibold uppercase tracking-[0.3em] text-[#f4efe4]">
               EM
             </div>
@@ -36,7 +36,7 @@ export default function DashboardShell({
               </p>
               <p className="text-lg font-semibold">Dashboard</p>
             </div>
-          </div>
+          </Link>
           <div className="flex items-center gap-3">
             {showEventNav ? (
               <Link

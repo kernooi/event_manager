@@ -57,7 +57,8 @@ export const ModelName = {
   Attendee: 'Attendee',
   CheckIn: 'CheckIn',
   Session: 'Session',
-  RegistrationField: 'RegistrationField'
+  RegistrationField: 'RegistrationField',
+  RegistrationAnswer: 'RegistrationAnswer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -104,6 +105,7 @@ export const InviteScalarFieldEnum = {
   id: 'id',
   eventId: 'eventId',
   token: 'token',
+  email: 'email',
   status: 'status',
   expiresAt: 'expiresAt',
   usedAt: 'usedAt',
@@ -165,6 +167,17 @@ export const RegistrationFieldScalarFieldEnum = {
 } as const
 
 export type RegistrationFieldScalarFieldEnum = (typeof RegistrationFieldScalarFieldEnum)[keyof typeof RegistrationFieldScalarFieldEnum]
+
+
+export const RegistrationAnswerScalarFieldEnum = {
+  id: 'id',
+  attendeeId: 'attendeeId',
+  fieldId: 'fieldId',
+  value: 'value',
+  createdAt: 'createdAt'
+} as const
+
+export type RegistrationAnswerScalarFieldEnum = (typeof RegistrationAnswerScalarFieldEnum)[keyof typeof RegistrationAnswerScalarFieldEnum]
 
 
 export const SortOrder = {

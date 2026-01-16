@@ -44,6 +44,7 @@ model Invite {
   eventId   String       @db.Uuid
   event     Event        @relation(fields: [eventId], references: [id])
   token     String       @unique
+  email     String?
   status    InviteStatus @default(CREATED)
   expiresAt DateTime?
   usedAt    DateTime?
@@ -61,12 +62,13 @@ model Attendee {
   fullName     String
   email        String?
   phone        String?
-  age          Int
+  age          Int?
   dietary      Dietary  @default(NONE)
   table        String?
   registeredAt DateTime @default(now())
   checkedInAt  DateTime?
   checkIns     CheckIn[]
+  answers      RegistrationAnswer[]
 }
 
 model CheckIn {
@@ -99,6 +101,19 @@ model RegistrationField {
   options   Json?
   order     Int       @default(0)
   createdAt DateTime  @default(now())
+  answers   RegistrationAnswer[]
+}
+
+model RegistrationAnswer {
+  id         String            @id @default(uuid()) @db.Uuid
+  attendeeId String            @db.Uuid
+  attendee   Attendee          @relation(fields: [attendeeId], references: [id])
+  fieldId    String            @db.Uuid
+  field      RegistrationField @relation(fields: [fieldId], references: [id])
+  value      Json?
+  createdAt  DateTime          @default(now())
+
+  @@unique([attendeeId, fieldId])
 }
 
 enum InviteStatus {

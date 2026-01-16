@@ -390,7 +390,8 @@ export const ModelName = {
   Attendee: 'Attendee',
   CheckIn: 'CheckIn',
   Session: 'Session',
-  RegistrationField: 'RegistrationField'
+  RegistrationField: 'RegistrationField',
+  RegistrationAnswer: 'RegistrationAnswer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "event" | "invite" | "attendee" | "checkIn" | "session" | "registrationField"
+    modelProps: "user" | "event" | "invite" | "attendee" | "checkIn" | "session" | "registrationField" | "registrationAnswer"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -928,6 +929,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RegistrationAnswer: {
+      payload: Prisma.$RegistrationAnswerPayload<ExtArgs>
+      fields: Prisma.RegistrationAnswerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RegistrationAnswerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RegistrationAnswerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>
+        }
+        findFirst: {
+          args: Prisma.RegistrationAnswerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RegistrationAnswerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>
+        }
+        findMany: {
+          args: Prisma.RegistrationAnswerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>[]
+        }
+        create: {
+          args: Prisma.RegistrationAnswerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>
+        }
+        createMany: {
+          args: Prisma.RegistrationAnswerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RegistrationAnswerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>[]
+        }
+        delete: {
+          args: Prisma.RegistrationAnswerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>
+        }
+        update: {
+          args: Prisma.RegistrationAnswerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>
+        }
+        deleteMany: {
+          args: Prisma.RegistrationAnswerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RegistrationAnswerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RegistrationAnswerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>[]
+        }
+        upsert: {
+          args: Prisma.RegistrationAnswerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationAnswerPayload>
+        }
+        aggregate: {
+          args: Prisma.RegistrationAnswerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRegistrationAnswer>
+        }
+        groupBy: {
+          args: Prisma.RegistrationAnswerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RegistrationAnswerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RegistrationAnswerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RegistrationAnswerCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -995,6 +1070,7 @@ export const InviteScalarFieldEnum = {
   id: 'id',
   eventId: 'eventId',
   token: 'token',
+  email: 'email',
   status: 'status',
   expiresAt: 'expiresAt',
   usedAt: 'usedAt',
@@ -1056,6 +1132,17 @@ export const RegistrationFieldScalarFieldEnum = {
 } as const
 
 export type RegistrationFieldScalarFieldEnum = (typeof RegistrationFieldScalarFieldEnum)[keyof typeof RegistrationFieldScalarFieldEnum]
+
+
+export const RegistrationAnswerScalarFieldEnum = {
+  id: 'id',
+  attendeeId: 'attendeeId',
+  fieldId: 'fieldId',
+  value: 'value',
+  createdAt: 'createdAt'
+} as const
+
+export type RegistrationAnswerScalarFieldEnum = (typeof RegistrationAnswerScalarFieldEnum)[keyof typeof RegistrationAnswerScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1325,6 +1412,7 @@ export type GlobalOmitConfig = {
   checkIn?: Prisma.CheckInOmit
   session?: Prisma.SessionOmit
   registrationField?: Prisma.RegistrationFieldOmit
+  registrationAnswer?: Prisma.RegistrationAnswerOmit
 }
 
 /* Types for Logging */

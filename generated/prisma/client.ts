@@ -74,3 +74,8 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type RegistrationField = Prisma.RegistrationFieldModel
+/**
+ * Model RegistrationAnswer
+ * 
+ */
+export type RegistrationAnswer = Prisma.RegistrationAnswerModel
