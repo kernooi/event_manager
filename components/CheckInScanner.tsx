@@ -70,19 +70,6 @@ function isMobileDevice() {
   return /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent);
 }
 
-function getResultText(result: { getText?: () => string; text?: string } | undefined) {
-  if (!result) {
-    return "";
-  }
-  if (typeof result.getText === "function") {
-    return result.getText();
-  }
-  if (typeof result.text === "string") {
-    return result.text;
-  }
-  return "";
-}
-
 export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const readerRef = useRef<BrowserQRCodeReader | null>(null);
@@ -214,7 +201,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
         videoRef.current,
         (result, error) => {
           if (result) {
-            const value = getResultText(result).trim();
+            const value = result.getText().trim();
             if (value) {
               void handleScanResult(value);
             }
