@@ -5,7 +5,20 @@ import { useRouter } from "next/navigation";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function CreateEventCard() {
+type CreatedEvent = {
+  id: string;
+  name: string;
+  startAt: string | null;
+  endAt: string | null;
+  location: string | null;
+  createdAt: string;
+};
+
+type CreateEventCardProps = {
+  onCreated?: (event: CreatedEvent) => void;
+};
+
+export default function CreateEventCard({ onCreated }: CreateEventCardProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -41,11 +54,21 @@ export default function CreateEventCard() {
         return;
       }
 
+      const data = (await response.json().catch(() => null)) as
+        | { event?: CreatedEvent }
+        | null;
+      const createdEvent = data?.event;
+
       setStatus("success");
       setMessage("Event created.");
       form.reset();
       setOpen(false);
-      router.refresh();
+
+      if (createdEvent && onCreated) {
+        onCreated(createdEvent);
+      } else {
+        router.refresh();
+      }
     } catch (error) {
       setStatus("error");
       setMessage("Network error. Try again.");

@@ -5,11 +5,15 @@ import { useRouter } from "next/navigation";
 
 type DeleteEventButtonProps = {
   eventId: string;
+  onDeleted?: () => void;
 };
 
 type Status = "idle" | "loading" | "error";
 
-export default function DeleteEventButton({ eventId }: DeleteEventButtonProps) {
+export default function DeleteEventButton({
+  eventId,
+  onDeleted,
+}: DeleteEventButtonProps) {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [open, setOpen] = useState(false);
@@ -34,7 +38,11 @@ export default function DeleteEventButton({ eventId }: DeleteEventButtonProps) {
       setStep(1);
       setAcknowledged(false);
       setTyped("");
-      router.refresh();
+      if (onDeleted) {
+        onDeleted();
+      } else {
+        router.refresh();
+      }
     } catch (error) {
       setStatus("error");
     }
