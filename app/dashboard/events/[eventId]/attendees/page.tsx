@@ -114,9 +114,9 @@ export default async function AttendeesPage({
   const searchFilter = search
     ? {
         OR: [
-          { fullName: { contains: search, mode: "insensitive" } },
-          { email: { contains: search, mode: "insensitive" } },
-          { phone: { contains: search, mode: "insensitive" } },
+          { fullName: { contains: search, mode: "insensitive" as const } },
+          { email: { contains: search, mode: "insensitive" as const } },
+          { phone: { contains: search, mode: "insensitive" as const } },
         ],
       }
     : {};
