@@ -187,8 +187,16 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
       const data = (await response.json().catch(() => null)) as ScanResult | ErrorResult | null;
 
       if (!response.ok) {
-        setErrorMessage(data?.error || "Unable to check in attendee.");
-        if (response.status === 403 && data?.startsAt) {
+        const error =
+          data && "error" in data && typeof data.error === "string"
+            ? data.error
+            : "Unable to check in attendee.";
+        const startsAtValue =
+          data && "startsAt" in data && typeof data.startsAt === "string"
+            ? data.startsAt
+            : null;
+        setErrorMessage(error);
+        if (response.status === 403 && startsAtValue) {
           stopScanner();
           setStatusMessage("Check-in opens when the event starts.");
         } else {
