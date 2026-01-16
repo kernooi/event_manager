@@ -42,7 +42,7 @@ model Event {
 model Invite {
   id        String       @id @default(uuid()) @db.Uuid
   eventId   String       @db.Uuid
-  event     Event        @relation(fields: [eventId], references: [id])
+  event     Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
   token     String       @unique
   email     String?
   status    InviteStatus @default(CREATED)
@@ -55,14 +55,15 @@ model Invite {
 model Attendee {
   id           String   @id @default(uuid()) @db.Uuid
   eventId      String   @db.Uuid
-  event        Event    @relation(fields: [eventId], references: [id])
+  event        Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
   inviteId     String?  @unique @db.Uuid
-  invite       Invite?  @relation(fields: [inviteId], references: [id])
+  invite       Invite?  @relation(fields: [inviteId], references: [id], onDelete: SetNull)
   token        String   @unique
   fullName     String
   email        String?
   phone        String?
   age          Int?
+  gender       Gender   @default(PREFER_NOT_TO_SAY)
   dietary      Dietary  @default(NONE)
   table        String?
   registeredAt DateTime @default(now())
@@ -74,9 +75,9 @@ model Attendee {
 model CheckIn {
   id         String   @id @default(uuid()) @db.Uuid
   attendeeId String   @db.Uuid
-  attendee   Attendee @relation(fields: [attendeeId], references: [id])
+  attendee   Attendee @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
   eventId    String   @db.Uuid
-  event      Event    @relation(fields: [eventId], references: [id])
+  event      Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
   scannedBy  String   @db.Uuid
   scanner    User     @relation("CheckInScanner", fields: [scannedBy], references: [id])
   scannedAt  DateTime @default(now())
@@ -94,7 +95,7 @@ model Session {
 model RegistrationField {
   id        String    @id @default(uuid()) @db.Uuid
   eventId   String    @db.Uuid
-  event     Event     @relation(fields: [eventId], references: [id])
+  event     Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
   label     String
   type      FieldType
   required  Boolean   @default(false)
@@ -107,9 +108,9 @@ model RegistrationField {
 model RegistrationAnswer {
   id         String            @id @default(uuid()) @db.Uuid
   attendeeId String            @db.Uuid
-  attendee   Attendee          @relation(fields: [attendeeId], references: [id])
+  attendee   Attendee          @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
   fieldId    String            @db.Uuid
-  field      RegistrationField @relation(fields: [fieldId], references: [id])
+  field      RegistrationField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
   value      Json?
   createdAt  DateTime          @default(now())
 
@@ -128,6 +129,14 @@ enum Dietary {
   VEGAN
   HALAL
   OTHER
+}
+
+enum Gender {
+  FEMALE
+  MALE
+  NON_BINARY
+  OTHER
+  PREFER_NOT_TO_SAY
 }
 
 enum FieldType {

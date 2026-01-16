@@ -124,6 +124,7 @@ export const AttendeeScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   age: 'age',
+  gender: 'gender',
   dietary: 'dietary',
   table: 'table',
   registeredAt: 'registeredAt',

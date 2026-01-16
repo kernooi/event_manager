@@ -56,9 +56,6 @@ export default function Home() {
 
       <main className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-10 px-6 py-16 lg:flex-row lg:items-center lg:justify-between">
         <section className="flex max-w-xl flex-col gap-6">
-          <p className="inline-flex w-fit items-center gap-3 rounded-full border border-[#c9b7a8] bg-[#fbf8f2] px-4 py-2 text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
-            Private Access Only
-          </p>
           <h1 className="text-4xl font-semibold leading-tight text-[#1b1a18] sm:text-5xl lg:text-6xl font-[var(--font-display)]">
             Events Manager
           </h1>

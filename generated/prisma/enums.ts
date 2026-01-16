@@ -29,6 +29,17 @@ export const Dietary = {
 export type Dietary = (typeof Dietary)[keyof typeof Dietary]
 
 
+export const Gender = {
+  FEMALE: 'FEMALE',
+  MALE: 'MALE',
+  NON_BINARY: 'NON_BINARY',
+  OTHER: 'OTHER',
+  PREFER_NOT_TO_SAY: 'PREFER_NOT_TO_SAY'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
 export const FieldType = {
   TEXT: 'TEXT',
   NUMBER: 'NUMBER',

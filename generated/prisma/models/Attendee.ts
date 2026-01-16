@@ -43,6 +43,7 @@ export type AttendeeMinAggregateOutputType = {
   email: string | null
   phone: string | null
   age: number | null
+  gender: $Enums.Gender | null
   dietary: $Enums.Dietary | null
   table: string | null
   registeredAt: Date | null
@@ -58,6 +59,7 @@ export type AttendeeMaxAggregateOutputType = {
   email: string | null
   phone: string | null
   age: number | null
+  gender: $Enums.Gender | null
   dietary: $Enums.Dietary | null
   table: string | null
   registeredAt: Date | null
@@ -73,6 +75,7 @@ export type AttendeeCountAggregateOutputType = {
   email: number
   phone: number
   age: number
+  gender: number
   dietary: number
   table: number
   registeredAt: number
@@ -98,6 +101,7 @@ export type AttendeeMinAggregateInputType = {
   email?: true
   phone?: true
   age?: true
+  gender?: true
   dietary?: true
   table?: true
   registeredAt?: true
@@ -113,6 +117,7 @@ export type AttendeeMaxAggregateInputType = {
   email?: true
   phone?: true
   age?: true
+  gender?: true
   dietary?: true
   table?: true
   registeredAt?: true
@@ -128,6 +133,7 @@ export type AttendeeCountAggregateInputType = {
   email?: true
   phone?: true
   age?: true
+  gender?: true
   dietary?: true
   table?: true
   registeredAt?: true
@@ -230,6 +236,7 @@ export type AttendeeGroupByOutputType = {
   email: string | null
   phone: string | null
   age: number | null
+  gender: $Enums.Gender
   dietary: $Enums.Dietary
   table: string | null
   registeredAt: Date
@@ -268,6 +275,7 @@ export type AttendeeWhereInput = {
   email?: Prisma.StringNullableFilter<"Attendee"> | string | null
   phone?: Prisma.StringNullableFilter<"Attendee"> | string | null
   age?: Prisma.IntNullableFilter<"Attendee"> | number | null
+  gender?: Prisma.EnumGenderFilter<"Attendee"> | $Enums.Gender
   dietary?: Prisma.EnumDietaryFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableFilter<"Attendee"> | string | null
   registeredAt?: Prisma.DateTimeFilter<"Attendee"> | Date | string
@@ -287,6 +295,7 @@ export type AttendeeOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrderInput | Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
@@ -309,6 +318,7 @@ export type AttendeeWhereUniqueInput = Prisma.AtLeast<{
   email?: Prisma.StringNullableFilter<"Attendee"> | string | null
   phone?: Prisma.StringNullableFilter<"Attendee"> | string | null
   age?: Prisma.IntNullableFilter<"Attendee"> | number | null
+  gender?: Prisma.EnumGenderFilter<"Attendee"> | $Enums.Gender
   dietary?: Prisma.EnumDietaryFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableFilter<"Attendee"> | string | null
   registeredAt?: Prisma.DateTimeFilter<"Attendee"> | Date | string
@@ -328,6 +338,7 @@ export type AttendeeOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrderInput | Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
@@ -351,6 +362,7 @@ export type AttendeeScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"Attendee"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"Attendee"> | string | null
   age?: Prisma.IntNullableWithAggregatesFilter<"Attendee"> | number | null
+  gender?: Prisma.EnumGenderWithAggregatesFilter<"Attendee"> | $Enums.Gender
   dietary?: Prisma.EnumDietaryWithAggregatesFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableWithAggregatesFilter<"Attendee"> | string | null
   registeredAt?: Prisma.DateTimeWithAggregatesFilter<"Attendee"> | Date | string
@@ -364,6 +376,7 @@ export type AttendeeCreateInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -383,6 +396,7 @@ export type AttendeeUncheckedCreateInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -398,6 +412,7 @@ export type AttendeeUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -417,6 +432,7 @@ export type AttendeeUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -434,6 +450,7 @@ export type AttendeeCreateManyInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -447,6 +464,7 @@ export type AttendeeUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -462,6 +480,7 @@ export type AttendeeUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -492,6 +511,7 @@ export type AttendeeCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
@@ -511,6 +531,7 @@ export type AttendeeMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
@@ -526,6 +547,7 @@ export type AttendeeMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
@@ -623,6 +645,10 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type EnumGenderFieldUpdateOperationsInput = {
+  set?: $Enums.Gender
+}
+
 export type EnumDietaryFieldUpdateOperationsInput = {
   set?: $Enums.Dietary
 }
@@ -662,6 +688,7 @@ export type AttendeeCreateWithoutEventInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -679,6 +706,7 @@ export type AttendeeUncheckedCreateWithoutEventInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -725,6 +753,7 @@ export type AttendeeScalarWhereInput = {
   email?: Prisma.StringNullableFilter<"Attendee"> | string | null
   phone?: Prisma.StringNullableFilter<"Attendee"> | string | null
   age?: Prisma.IntNullableFilter<"Attendee"> | number | null
+  gender?: Prisma.EnumGenderFilter<"Attendee"> | $Enums.Gender
   dietary?: Prisma.EnumDietaryFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableFilter<"Attendee"> | string | null
   registeredAt?: Prisma.DateTimeFilter<"Attendee"> | Date | string
@@ -738,6 +767,7 @@ export type AttendeeCreateWithoutInviteInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -755,6 +785,7 @@ export type AttendeeUncheckedCreateWithoutInviteInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -786,6 +817,7 @@ export type AttendeeUpdateWithoutInviteInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -803,6 +835,7 @@ export type AttendeeUncheckedUpdateWithoutInviteInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -818,6 +851,7 @@ export type AttendeeCreateWithoutCheckInsInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -836,6 +870,7 @@ export type AttendeeUncheckedCreateWithoutCheckInsInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -866,6 +901,7 @@ export type AttendeeUpdateWithoutCheckInsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -884,6 +920,7 @@ export type AttendeeUncheckedUpdateWithoutCheckInsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -898,6 +935,7 @@ export type AttendeeCreateWithoutAnswersInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -916,6 +954,7 @@ export type AttendeeUncheckedCreateWithoutAnswersInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -946,6 +985,7 @@ export type AttendeeUpdateWithoutAnswersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -964,6 +1004,7 @@ export type AttendeeUncheckedUpdateWithoutAnswersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -979,6 +1020,7 @@ export type AttendeeCreateManyEventInput = {
   email?: string | null
   phone?: string | null
   age?: number | null
+  gender?: $Enums.Gender
   dietary?: $Enums.Dietary
   table?: string | null
   registeredAt?: Date | string
@@ -992,6 +1034,7 @@ export type AttendeeUpdateWithoutEventInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1009,6 +1052,7 @@ export type AttendeeUncheckedUpdateWithoutEventInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1025,6 +1069,7 @@ export type AttendeeUncheckedUpdateManyWithoutEventInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gender?: Prisma.EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   registeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1080,6 +1125,7 @@ export type AttendeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   email?: boolean
   phone?: boolean
   age?: boolean
+  gender?: boolean
   dietary?: boolean
   table?: boolean
   registeredAt?: boolean
@@ -1100,6 +1146,7 @@ export type AttendeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   email?: boolean
   phone?: boolean
   age?: boolean
+  gender?: boolean
   dietary?: boolean
   table?: boolean
   registeredAt?: boolean
@@ -1117,6 +1164,7 @@ export type AttendeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   email?: boolean
   phone?: boolean
   age?: boolean
+  gender?: boolean
   dietary?: boolean
   table?: boolean
   registeredAt?: boolean
@@ -1134,13 +1182,14 @@ export type AttendeeSelectScalar = {
   email?: boolean
   phone?: boolean
   age?: boolean
+  gender?: boolean
   dietary?: boolean
   table?: boolean
   registeredAt?: boolean
   checkedInAt?: boolean
 }
 
-export type AttendeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "inviteId" | "token" | "fullName" | "email" | "phone" | "age" | "dietary" | "table" | "registeredAt" | "checkedInAt", ExtArgs["result"]["attendee"]>
+export type AttendeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "inviteId" | "token" | "fullName" | "email" | "phone" | "age" | "gender" | "dietary" | "table" | "registeredAt" | "checkedInAt", ExtArgs["result"]["attendee"]>
 export type AttendeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   invite?: boolean | Prisma.Attendee$inviteArgs<ExtArgs>
@@ -1174,6 +1223,7 @@ export type $AttendeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     email: string | null
     phone: string | null
     age: number | null
+    gender: $Enums.Gender
     dietary: $Enums.Dietary
     table: string | null
     registeredAt: Date
@@ -1613,6 +1663,7 @@ export interface AttendeeFieldRefs {
   readonly email: Prisma.FieldRef<"Attendee", 'String'>
   readonly phone: Prisma.FieldRef<"Attendee", 'String'>
   readonly age: Prisma.FieldRef<"Attendee", 'Int'>
+  readonly gender: Prisma.FieldRef<"Attendee", 'Gender'>
   readonly dietary: Prisma.FieldRef<"Attendee", 'Dietary'>
   readonly table: Prisma.FieldRef<"Attendee", 'String'>
   readonly registeredAt: Prisma.FieldRef<"Attendee", 'DateTime'>

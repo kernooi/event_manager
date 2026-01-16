@@ -93,14 +93,16 @@ export default function RegistrationFieldsEditor({
           </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
-          {["Full name", "Email", "Phone number"].map((label) => (
+          {["Full name", "Email", "Phone number", "Age", "Gender"].map(
+            (label) => (
             <span
               key={label}
               className="rounded-full border border-[#d9c9b9] bg-[#fbf8f2] px-4 py-2 text-sm text-[#3f352c]"
             >
               {label}
             </span>
-          ))}
+            )
+          )}
         </div>
 
         <div className="mt-8">

@@ -44,6 +44,8 @@ export async function POST(
     fullName?: string;
     email?: string;
     phone?: string;
+    age?: number | string | null;
+    gender?: string;
     answers?: Record<string, string | string[]>;
   };
 
@@ -56,6 +58,8 @@ export async function POST(
   const fullName = payload.fullName?.trim();
   const email = payload.email?.trim().toLowerCase();
   const phone = payload.phone?.trim();
+  const ageValue = payload.age;
+  const gender = payload.gender?.trim().toUpperCase();
   const answers = payload.answers ?? {};
 
   if (!fullName || !email || !phone) {
@@ -63,6 +67,39 @@ export async function POST(
       { error: "Full name, email, and phone are required" },
       { status: 400 }
     );
+  }
+
+  if (!gender) {
+    return NextResponse.json({ error: "Gender is required" }, { status: 400 });
+  }
+
+  const allowedGenders = [
+    "FEMALE",
+    "MALE",
+    "NON_BINARY",
+    "OTHER",
+    "PREFER_NOT_TO_SAY",
+  ];
+
+  if (!allowedGenders.includes(gender)) {
+    return NextResponse.json({ error: "Gender is invalid" }, { status: 400 });
+  }
+
+  let age: number | undefined;
+  if (ageValue !== undefined && ageValue !== null && `${ageValue}`.trim() !== "") {
+    const parsedAge =
+      typeof ageValue === "number" ? ageValue : Number(String(ageValue).trim());
+    if (!Number.isFinite(parsedAge) || !Number.isInteger(parsedAge) || parsedAge < 0) {
+      return NextResponse.json(
+        { error: "Age must be a valid number" },
+        { status: 400 }
+      );
+    }
+    age = parsedAge;
+  }
+
+  if (age === undefined) {
+    return NextResponse.json({ error: "Age is required" }, { status: 400 });
   }
 
   if (!isValidEmail(email)) {
@@ -130,6 +167,8 @@ export async function POST(
         fullName,
         email,
         phone,
+        age,
+        gender: gender as "FEMALE" | "MALE" | "NON_BINARY" | "OTHER" | "PREFER_NOT_TO_SAY",
       },
     });
 

@@ -34,6 +34,8 @@ export default function InviteRegistrationForm({
     const form = event.currentTarget;
     const formData = new FormData(form);
     const answers: Record<string, string | string[]> = {};
+    const ageRaw = String(formData.get("age") || "").trim();
+    const gender = String(formData.get("gender") || "").trim();
 
     fields.forEach((field) => {
       const key = `field_${field.id}`;
@@ -58,6 +60,8 @@ export default function InviteRegistrationForm({
       fullName: String(formData.get("fullName") || "").trim(),
       email: String(formData.get("email") || "").trim(),
       phone: String(formData.get("phone") || "").trim(),
+      age: ageRaw,
+      gender,
       answers,
     };
 
@@ -145,6 +149,31 @@ export default function InviteRegistrationForm({
             required
             className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
           />
+        </label>
+        <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+          Age
+          <input
+            name="age"
+            type="number"
+            min={0}
+            required
+            className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+          />
+        </label>
+        <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+          Gender
+          <select
+            name="gender"
+            required
+            className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+          >
+            <option value="">Select a gender</option>
+            <option value="FEMALE">Female</option>
+            <option value="MALE">Male</option>
+            <option value="NON_BINARY">Non-binary</option>
+            <option value="OTHER">Other</option>
+            <option value="PREFER_NOT_TO_SAY">Prefer not to say</option>
+          </select>
         </label>
       </div>
 

@@ -22,6 +22,9 @@ export async function DELETE(
   }
 
   await prisma.$transaction([
+    prisma.registrationAnswer.deleteMany({
+      where: { attendee: { eventId } },
+    }),
     prisma.checkIn.deleteMany({ where: { eventId } }),
     prisma.attendee.deleteMany({ where: { eventId } }),
     prisma.invite.deleteMany({ where: { eventId } }),
