@@ -11,6 +11,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
+    "@zxing/browser": "^0.1.5",
     "next": "16.1.2",
     "pg": "^8.17.1",
     "qrcode": "^1.5.4",

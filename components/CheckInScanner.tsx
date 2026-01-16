@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { BrowserQRCodeReader, IScannerControls } from "@zxing/browser";
 
 type CheckInScannerProps = {
   eventId: string;
@@ -16,10 +17,6 @@ type ScanResult = {
 type ErrorResult = {
   error: string;
   startsAt?: string;
-};
-
-type BarcodeDetectorLike = {
-  detect: (source: ImageBitmapSource) => Promise<Array<{ rawValue?: string }>>;
 };
 
 const MIN_SCAN_INTERVAL_MS = 2500;
@@ -73,11 +70,23 @@ function isMobileDevice() {
   return /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent);
 }
 
+function getResultText(result: { getText?: () => string; text?: string } | undefined) {
+  if (!result) {
+    return "";
+  }
+  if (typeof result.getText === "function") {
+    return result.getText();
+  }
+  if (typeof result.text === "string") {
+    return result.text;
+  }
+  return "";
+}
+
 export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-  const detectorRef = useRef<BarcodeDetectorLike | null>(null);
-  const scanningRef = useRef(false);
+  const readerRef = useRef<BrowserQRCodeReader | null>(null);
+  const controlsRef = useRef<IScannerControls | null>(null);
   const lastScanRef = useRef<{ value: string; time: number } | null>(null);
 
   const [statusMessage, setStatusMessage] = useState<string>("Initializing scanner...");
@@ -95,67 +104,10 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     return new Date(startsAt).getTime() <= Date.now();
   }, [startsAt]);
 
-  const startScanner = async () => {
-    if (!canScan) {
-      return;
-    }
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    if (!("mediaDevices" in navigator) || !navigator.mediaDevices.getUserMedia) {
-      setErrorMessage("Camera access is not supported on this device.");
-      return;
-    }
-
-    const Detector = (
-      window as typeof window & {
-        BarcodeDetector?: new (options?: { formats?: string[] }) => BarcodeDetectorLike;
-      }
-    ).BarcodeDetector;
-
-    if (!Detector) {
-      setScannerSupported(false);
-      setErrorMessage(
-        "QR scanning is not supported in this browser. Use Chrome/Edge or paste the QR link."
-      );
-      return;
-    }
-
-    setErrorMessage(null);
-    setScannerSupported(true);
-    setStatusMessage("Starting camera...");
-
-    try {
-      const useFrontCamera = isMobileDevice();
-      const constraints: MediaStreamConstraints = {
-        video: useFrontCamera ? { facingMode: { ideal: "user" } } : true,
-        audio: false,
-      };
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
-      streamRef.current = stream;
-
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
-
-      detectorRef.current = new Detector({ formats: ["qr_code"] });
-      scanningRef.current = true;
-      setIsScanning(true);
-      setStatusMessage("Scanning for QR codes...");
-      requestAnimationFrame(scanFrame);
-    } catch (error) {
-      setErrorMessage("Unable to access the camera. Check permissions.");
-      setIsScanning(false);
-    }
-  };
-
   const stopScanner = () => {
-    scanningRef.current = false;
+    controlsRef.current?.stop();
+    controlsRef.current = null;
     setIsScanning(false);
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-    streamRef.current = null;
   };
 
   const handleScanResult = async (value: string) => {
@@ -218,33 +170,81 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     }
   };
 
-  const scanFrame = async () => {
-    if (!scanningRef.current || !videoRef.current || !detectorRef.current) {
+  const startScanner = async () => {
+    if (!canScan) {
+      return;
+    }
+    if (typeof window === "undefined") {
+      return;
+    }
+    if (!videoRef.current) {
       return;
     }
 
-    if (videoRef.current.readyState < 2) {
-      requestAnimationFrame(scanFrame);
+    if (!window.isSecureContext) {
+      setScannerSupported(false);
+      setErrorMessage("Camera access requires HTTPS or localhost.");
+      setStatusMessage("Scanner ready.");
       return;
     }
+
+    if (!("mediaDevices" in navigator) || !navigator.mediaDevices.getUserMedia) {
+      setScannerSupported(false);
+      setErrorMessage("Camera access is not supported on this device.");
+      setStatusMessage("Scanner ready.");
+      return;
+    }
+
+    setErrorMessage(null);
+    setScannerSupported(true);
+    setStatusMessage("Requesting camera access...");
+    stopScanner();
 
     try {
-      const barcodes = await detectorRef.current.detect(videoRef.current);
-      if (barcodes.length > 0) {
-        const value = barcodes[0].rawValue?.trim();
-        if (value) {
-          await handleScanResult(value);
-        }
-      }
-    } catch (error) {
-      setErrorMessage("Unable to read QR code. Try again.");
-    }
+      const reader = readerRef.current ?? new BrowserQRCodeReader();
+      readerRef.current = reader;
+      const useFrontCamera = isMobileDevice();
+      const constraints: MediaStreamConstraints = {
+        video: useFrontCamera ? { facingMode: { ideal: "user" } } : true,
+        audio: false,
+      };
 
-    requestAnimationFrame(scanFrame);
+      controlsRef.current = await reader.decodeFromConstraints(
+        constraints,
+        videoRef.current,
+        (result, error) => {
+          if (result) {
+            const value = getResultText(result).trim();
+            if (value) {
+              void handleScanResult(value);
+            }
+          }
+
+          if (error && error.name !== "NotFoundException") {
+            setErrorMessage("Unable to read QR code. Try again.");
+          }
+        }
+      );
+
+      setIsScanning(true);
+      setStatusMessage("Scanning for QR codes...");
+    } catch (error) {
+      const isPermissionError =
+        error instanceof DOMException &&
+        (error.name === "NotAllowedError" || error.name === "NotFoundError");
+      setErrorMessage(
+        isPermissionError
+          ? "Camera access was blocked. Check permissions and try again."
+          : "Unable to access the camera. Check permissions."
+      );
+      setStatusMessage("Scanner ready.");
+      setIsScanning(false);
+    }
   };
 
   useEffect(() => {
     if (!canScan) {
+      stopScanner();
       setStatusMessage("Check-in opens when the event starts.");
       return;
     }
@@ -337,7 +337,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
           </div>
           {!scannerSupported ? (
             <p className="mt-2 text-xs text-[#6b5a4a]">
-              Camera prompts only appear in browsers that support QR scanning.
+              Camera prompts only appear on HTTPS or localhost.
             </p>
           ) : null}
         </form>
