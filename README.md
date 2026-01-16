@@ -39,7 +39,7 @@ npx prisma migrate dev --name init
 npx prisma generate
 npx prisma studio
 
-curl -X POST http://localhost:3000/api/admin/create-user \
+curl -X POST https://eventmanager-opal.vercel.app/api/admin/create-user \
   -H "Content-Type: application/json" \
   -H "x-admin-secret: YOUR_SECRET" \
   -d "{\"email\":\"staff@velvetrope.com\",\"password\":\"StrongPass123\"}"
