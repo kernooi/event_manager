@@ -307,7 +307,7 @@ export default async function AttendeesPage({
                 {search ? (
                   <Link
                     href={buildHref(status, "", 1)}
-                    className="h-10 rounded-full border border-[#d9c9b9] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#5b4a3d] transition hover:bg-[#fbf8f2]"
+                    className="flex h-10 items-center rounded-full border border-[#d9c9b9] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#5b4a3d] transition hover:bg-[#fbf8f2]"
                   >
                     Clear
                   </Link>
