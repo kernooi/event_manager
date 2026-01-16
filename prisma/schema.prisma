@@ -12,3 +12,76 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id        String    @id @default(uuid()) @db.Uuid
+  createdAt DateTime  @default(now())
+  events    Event[]   @relation("EventOwner")
+  checkIns  CheckIn[] @relation("CheckInScanner")
+}
+
+model Event {
+  id        String     @id @default(uuid()) @db.Uuid
+  ownerId   String     @db.Uuid
+  owner     User       @relation("EventOwner", fields: [ownerId], references: [id])
+  name      String
+  date      DateTime?
+  location  String?
+  createdAt DateTime   @default(now())
+  invites   Invite[]
+  attendees Attendee[]
+  checkIns  CheckIn[]
+}
+
+model Invite {
+  id        String       @id @default(uuid()) @db.Uuid
+  eventId   String       @db.Uuid
+  event     Event        @relation(fields: [eventId], references: [id])
+  token     String       @unique
+  status    InviteStatus @default(CREATED)
+  expiresAt DateTime?
+  usedAt    DateTime?
+  createdAt DateTime     @default(now())
+  attendee  Attendee?
+}
+
+model Attendee {
+  id           String   @id @default(uuid()) @db.Uuid
+  eventId      String   @db.Uuid
+  event        Event    @relation(fields: [eventId], references: [id])
+  inviteId     String?  @unique @db.Uuid
+  invite       Invite?  @relation(fields: [inviteId], references: [id])
+  token        String   @unique
+  fullName     String
+  age          Int
+  dietary      Dietary  @default(NONE)
+  table        String?
+  registeredAt DateTime @default(now())
+  checkedInAt  DateTime?
+  checkIns     CheckIn[]
+}
+
+model CheckIn {
+  id         String   @id @default(uuid()) @db.Uuid
+  attendeeId String   @db.Uuid
+  attendee   Attendee @relation(fields: [attendeeId], references: [id])
+  eventId    String   @db.Uuid
+  event      Event    @relation(fields: [eventId], references: [id])
+  scannedBy  String   @db.Uuid
+  scanner    User     @relation("CheckInScanner", fields: [scannedBy], references: [id])
+  scannedAt  DateTime @default(now())
+}
+
+enum InviteStatus {
+  CREATED
+  SENT
+  USED
+}
+
+enum Dietary {
+  NONE
+  VEGETARIAN
+  VEGAN
+  HALAL
+  OTHER
+}
