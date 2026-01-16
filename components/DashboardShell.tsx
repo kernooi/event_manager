@@ -3,7 +3,7 @@ import ProfileMenu from "@/components/ProfileMenu";
 
 type DashboardShellProps = {
   userEmail: string;
-  current: "overview" | "registration" | "invites" | "attendees";
+  current: "overview" | "registration" | "invites" | "attendees" | "checkin";
   eventId?: string | null;
   children: React.ReactNode;
 };
@@ -13,6 +13,7 @@ const navItems = [
   { key: "registration", label: "Registration Form" },
   { key: "invites", label: "Invites" },
   { key: "attendees", label: "Attendees" },
+  { key: "checkin", label: "Check-in" },
 ] as const;
 
 export default function DashboardShell({
