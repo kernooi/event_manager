@@ -19,6 +19,8 @@ type ErrorResult = {
   startsAt?: string;
 };
 
+type PopoutType = "success" | "already";
+
 const MIN_SCAN_INTERVAL_MS = 2500;
 
 function extractToken(rawValue: string) {
@@ -75,6 +77,9 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
   const readerRef = useRef<BrowserQRCodeReader | null>(null);
   const controlsRef = useRef<IScannerControls | null>(null);
   const lastScanRef = useRef<{ value: string; time: number } | null>(null);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const busyRef = useRef(false);
+  const popoutRef = useRef<PopoutType | null>(null);
 
   const [statusMessage, setStatusMessage] = useState<string>("Initializing scanner...");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -83,6 +88,11 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [manualToken, setManualToken] = useState("");
   const [scannerSupported, setScannerSupported] = useState(true);
+  const [popout, setPopout] = useState<PopoutType | null>(null);
+
+  useEffect(() => {
+    popoutRef.current = popout;
+  }, [popout]);
 
   const canScan = useMemo(() => {
     if (!startsAt) {
@@ -97,7 +107,32 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     setIsScanning(false);
   };
 
+  const scheduleResume = (delayMs: number, message = "Scanner ready.") => {
+    if (resumeTimerRef.current) {
+      clearTimeout(resumeTimerRef.current);
+    }
+    resumeTimerRef.current = setTimeout(() => {
+      busyRef.current = false;
+      setPopout(null);
+      setStatusMessage(message);
+      if (canScan) {
+        void startScanner();
+      }
+    }, delayMs);
+  };
+
+  const pauseAfterScan = (type: PopoutType) => {
+    busyRef.current = true;
+    setPopout(type);
+    stopScanner();
+    setStatusMessage("Pausing before next scan...");
+    scheduleResume(2000);
+  };
+
   const handleScanResult = async (value: string) => {
+    if (busyRef.current) {
+      return;
+    }
     const token = extractToken(value);
     if (!token) {
       setErrorMessage("Invalid QR code. Try again.");
@@ -109,12 +144,12 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     if (lastScan && lastScan.value === token && now - lastScan.time < MIN_SCAN_INTERVAL_MS) {
       return;
     }
-    if (isSubmitting) {
-      return;
-    }
 
+    busyRef.current = true;
+    stopScanner();
     lastScanRef.current = { value: token, time: now };
     setIsSubmitting(true);
+    setErrorMessage(null);
     setStatusMessage("Validating attendee...");
 
     try {
@@ -136,10 +171,12 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
             : null;
         setErrorMessage(error);
         if (response.status === 403 && startsAtValue) {
+          busyRef.current = false;
           stopScanner();
           setStatusMessage("Check-in opens when the event starts.");
         } else {
           setStatusMessage("Scanner ready.");
+          scheduleResume(900);
         }
         return;
       }
@@ -147,11 +184,12 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
       if (data && "status" in data) {
         setResult(data);
         setErrorMessage(null);
-        setStatusMessage("Scanner ready.");
+        pauseAfterScan(data.status === "already_checked_in" ? "already" : "success");
       }
     } catch (error) {
       setErrorMessage("Network error. Please try again.");
       setStatusMessage("Scanner ready.");
+      scheduleResume(900);
     } finally {
       setIsSubmitting(false);
     }
@@ -200,6 +238,9 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
         constraints,
         videoRef.current,
         (result, error) => {
+          if (busyRef.current || popoutRef.current) {
+            return;
+          }
           if (result) {
             const value = result.getText().trim();
             if (value) {
@@ -239,6 +280,9 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     void startScanner();
 
     return () => {
+      if (resumeTimerRef.current) {
+        clearTimeout(resumeTimerRef.current);
+      }
       stopScanner();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -255,7 +299,56 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+    <div className="relative grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      {popout ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1b1a18]/50 px-6">
+          <div className="w-full max-w-sm rounded-3xl border border-[#e3d6c8] bg-white p-6 text-center shadow-[0_30px_80px_-40px_rgba(27,26,24,0.8)]">
+            <div
+              className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${
+                popout === "success"
+                  ? "bg-[#e9f3ef] text-[#2f6d4f]"
+                  : "bg-[#fdf3e8] text-[#9a5a2c]"
+              }`}
+            >
+              {popout === "success" ? (
+                <svg
+                  className="h-8 w-8 animate-bounce"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg
+                  className="h-8 w-8 animate-bounce"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 6l12 12M18 6l-12 12" />
+                </svg>
+              )}
+            </div>
+            <p className="mt-4 text-lg font-semibold text-[#1b1a18]">
+              {popout === "success" ? "Check-in successful" : "Already registered"}
+            </p>
+            <p className="mt-2 text-sm text-[#6b5a4a]">
+              {popout === "success"
+                ? "Resuming scan in 2 seconds."
+                : "This attendee is already checked in."}
+            </p>
+          </div>
+        </div>
+      ) : null}
       <div className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -291,6 +384,19 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
           {errorMessage ? (
             <p className="rounded-xl bg-[#fff1ed] px-4 py-3 text-sm text-[#7a3327]">
               {errorMessage}
+            </p>
+          ) : null}
+          {result ? (
+            <p
+              className={`rounded-xl px-4 py-3 text-sm font-semibold ${
+                result.status === "already_checked_in"
+                  ? "bg-[#fdf3e8] text-[#9a5a2c]"
+                  : "bg-[#e9f3ef] text-[#2f6d4f]"
+              }`}
+            >
+              {result.status === "already_checked_in"
+                ? `Already checked in at ${formatDateTime(result.checkedInAt)}`
+                : `Check-in successful at ${formatDateTime(result.checkedInAt)}`}
             </p>
           ) : null}
           {!canScan && startsAt ? (
@@ -336,14 +442,22 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
         </p>
         {result ? (
           <div className="mt-4 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] p-4 text-sm text-[#5b4a3d]">
-            <p className="text-base font-semibold text-[#1b1a18]">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-base font-semibold text-[#1b1a18]">
               {result.attendeeName}
-            </p>
-            <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
-              {result.status === "already_checked_in"
-                ? "Already checked in"
-                : "Checked in"}
-            </p>
+              </p>
+              <span
+                className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] ${
+                  result.status === "already_checked_in"
+                    ? "bg-[#fdf3e8] text-[#9a5a2c]"
+                    : "bg-[#e9f3ef] text-[#2f6d4f]"
+                }`}
+              >
+                {result.status === "already_checked_in"
+                  ? "Already checked in"
+                  : "Checked in"}
+              </span>
+            </div>
             <p className="mt-3 text-sm text-[#5b4a3d]">
               {result.status === "already_checked_in"
                 ? `Already checked in at ${formatDateTime(result.checkedInAt)}`
