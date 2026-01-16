@@ -82,31 +82,29 @@ export async function POST(
       email,
       status: "CREATED",
     },
-    select: {
-      id: true,
-      email: true,
-      status: true,
-      createdAt: true,
-      usedAt: true,
-    },
+    select: { id: true, token: true, email: true },
   });
 
   const appUrl = process.env.APP_URL ?? "http://localhost:3000";
-  const inviteLink = `${appUrl}/invite/${token}`;
-  void sendInviteEmail({
-    to: email,
-    eventName: event.name,
-    inviteLink,
-  })
-    .then(async () => {
-      await prisma.invite.update({
-        where: { id: invite.id },
-        data: { status: "SENT" },
-      });
-    })
-    .catch((error) => {
-      console.error("Invite email failed", error);
+  const inviteLink = `${appUrl}/invite/${invite.token}`;
+
+  try {
+    await sendInviteEmail({
+      to: email,
+      eventName: event.name,
+      inviteLink,
     });
+
+    await prisma.invite.update({
+      where: { id: invite.id },
+      data: { status: "SENT" },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Invite created but email failed to send" },
+      { status: 502 }
+    );
+  }
 
   return NextResponse.json({ invite }, { status: 201 });
 }

@@ -5,23 +5,11 @@ import { useRouter } from "next/navigation";
 
 type InviteSenderProps = {
   eventId: string;
-  onInviteSent?: (invite: InviteSummary) => void;
 };
 
 type Status = "idle" | "loading" | "success" | "error";
 
-type InviteSummary = {
-  id: string;
-  email: string | null;
-  status: "CREATED" | "SENT" | "USED";
-  createdAt: string;
-  usedAt: string | null;
-};
-
-export default function InviteSender({
-  eventId,
-  onInviteSent,
-}: InviteSenderProps) {
+export default function InviteSender({ eventId }: InviteSenderProps) {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -51,19 +39,10 @@ export default function InviteSender({
         return;
       }
 
-      const data = (await response.json().catch(() => null)) as
-        | { invite?: InviteSummary }
-        | null;
-
       setStatus("success");
-      setMessage("Invite queued. Email sending.");
+      setMessage("Invite sent.");
       form.reset();
-
-      if (data?.invite && onInviteSent) {
-        onInviteSent(data.invite);
-      } else {
-        router.refresh();
-      }
+      router.refresh();
     } catch (error) {
       setStatus("error");
       setMessage("Network error. Please try again.");
