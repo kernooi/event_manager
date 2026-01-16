@@ -27,3 +27,13 @@ export const Dietary = {
 } as const
 
 export type Dietary = (typeof Dietary)[keyof typeof Dietary]
+
+
+export const FieldType = {
+  TEXT: 'TEXT',
+  NUMBER: 'NUMBER',
+  DROPDOWN: 'DROPDOWN',
+  CHECKBOX: 'CHECKBOX'
+} as const
+
+export type FieldType = (typeof FieldType)[keyof typeof FieldType]

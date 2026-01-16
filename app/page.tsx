@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function Home() {
+  const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -37,6 +39,7 @@ export default function Home() {
 
       setStatus("success");
       setMessage("Welcome back. You are cleared to continue.");
+      router.push("/dashboard");
     } catch (error) {
       setStatus("error");
       setMessage("Network error. Please retry in a moment.");

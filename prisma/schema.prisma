@@ -21,6 +21,7 @@ model User {
   createdAt DateTime  @default(now())
   events    Event[]   @relation("EventOwner")
   checkIns  CheckIn[] @relation("CheckInScanner")
+  sessions  Session[]
 }
 
 model Event {
@@ -28,12 +29,14 @@ model Event {
   ownerId   String     @db.Uuid
   owner     User       @relation("EventOwner", fields: [ownerId], references: [id])
   name      String
-  date      DateTime?
+  startAt   DateTime?
+  endAt     DateTime?
   location  String?
   createdAt DateTime   @default(now())
   invites   Invite[]
   attendees Attendee[]
   checkIns  CheckIn[]
+  registrationFields RegistrationField[]
 }
 
 model Invite {
@@ -56,6 +59,8 @@ model Attendee {
   invite       Invite?  @relation(fields: [inviteId], references: [id])
   token        String   @unique
   fullName     String
+  email        String?
+  phone        String?
   age          Int
   dietary      Dietary  @default(NONE)
   table        String?
@@ -75,6 +80,27 @@ model CheckIn {
   scannedAt  DateTime @default(now())
 }
 
+model Session {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model RegistrationField {
+  id        String    @id @default(uuid()) @db.Uuid
+  eventId   String    @db.Uuid
+  event     Event     @relation(fields: [eventId], references: [id])
+  label     String
+  type      FieldType
+  required  Boolean   @default(false)
+  options   Json?
+  order     Int       @default(0)
+  createdAt DateTime  @default(now())
+}
+
 enum InviteStatus {
   CREATED
   SENT
@@ -87,4 +113,11 @@ enum Dietary {
   VEGAN
   HALAL
   OTHER
+}
+
+enum FieldType {
+  TEXT
+  NUMBER
+  DROPDOWN
+  CHECKBOX
 }

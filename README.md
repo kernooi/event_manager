@@ -36,9 +36,15 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 npx prisma migrate dev --name init
+npx prisma generate
 npx prisma studio
 
 curl -X POST http://localhost:3000/api/admin/create-user \
   -H "Content-Type: application/json" \
   -H "x-admin-secret: YOUR_SECRET" \
   -d "{\"email\":\"staff@velvetrope.com\",\"password\":\"StrongPass123\"}"
+
+{
+  "email": "",
+  "password": ""
+}

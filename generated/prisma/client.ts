@@ -64,3 +64,13 @@ export type Attendee = Prisma.AttendeeModel
  * 
  */
 export type CheckIn = Prisma.CheckInModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
+ * Model RegistrationField
+ * 
+ */
+export type RegistrationField = Prisma.RegistrationFieldModel

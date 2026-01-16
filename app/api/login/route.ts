@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { createSession, getSessionCookieName } from "@/lib/auth";
 
 const PASSWORD_KEYLEN = 64;
 
@@ -54,10 +55,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
-  return NextResponse.json({
+  const session = await createSession(user.id);
+  const response = NextResponse.json({
     user: {
       id: user.id,
       email: user.email,
     },
   });
+
+  response.cookies.set(getSessionCookieName(), session.token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    expires: session.expiresAt,
+    path: "/",
+  });
+
+  return response;
 }

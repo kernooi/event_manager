@@ -40,6 +40,8 @@ export type AttendeeMinAggregateOutputType = {
   inviteId: string | null
   token: string | null
   fullName: string | null
+  email: string | null
+  phone: string | null
   age: number | null
   dietary: $Enums.Dietary | null
   table: string | null
@@ -53,6 +55,8 @@ export type AttendeeMaxAggregateOutputType = {
   inviteId: string | null
   token: string | null
   fullName: string | null
+  email: string | null
+  phone: string | null
   age: number | null
   dietary: $Enums.Dietary | null
   table: string | null
@@ -66,6 +70,8 @@ export type AttendeeCountAggregateOutputType = {
   inviteId: number
   token: number
   fullName: number
+  email: number
+  phone: number
   age: number
   dietary: number
   table: number
@@ -89,6 +95,8 @@ export type AttendeeMinAggregateInputType = {
   inviteId?: true
   token?: true
   fullName?: true
+  email?: true
+  phone?: true
   age?: true
   dietary?: true
   table?: true
@@ -102,6 +110,8 @@ export type AttendeeMaxAggregateInputType = {
   inviteId?: true
   token?: true
   fullName?: true
+  email?: true
+  phone?: true
   age?: true
   dietary?: true
   table?: true
@@ -115,6 +125,8 @@ export type AttendeeCountAggregateInputType = {
   inviteId?: true
   token?: true
   fullName?: true
+  email?: true
+  phone?: true
   age?: true
   dietary?: true
   table?: true
@@ -215,6 +227,8 @@ export type AttendeeGroupByOutputType = {
   inviteId: string | null
   token: string
   fullName: string
+  email: string | null
+  phone: string | null
   age: number
   dietary: $Enums.Dietary
   table: string | null
@@ -251,6 +265,8 @@ export type AttendeeWhereInput = {
   inviteId?: Prisma.UuidNullableFilter<"Attendee"> | string | null
   token?: Prisma.StringFilter<"Attendee"> | string
   fullName?: Prisma.StringFilter<"Attendee"> | string
+  email?: Prisma.StringNullableFilter<"Attendee"> | string | null
+  phone?: Prisma.StringNullableFilter<"Attendee"> | string | null
   age?: Prisma.IntFilter<"Attendee"> | number
   dietary?: Prisma.EnumDietaryFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableFilter<"Attendee"> | string | null
@@ -267,6 +283,8 @@ export type AttendeeOrderByWithRelationInput = {
   inviteId?: Prisma.SortOrderInput | Prisma.SortOrder
   token?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -286,6 +304,8 @@ export type AttendeeWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AttendeeWhereInput | Prisma.AttendeeWhereInput[]
   eventId?: Prisma.UuidFilter<"Attendee"> | string
   fullName?: Prisma.StringFilter<"Attendee"> | string
+  email?: Prisma.StringNullableFilter<"Attendee"> | string | null
+  phone?: Prisma.StringNullableFilter<"Attendee"> | string | null
   age?: Prisma.IntFilter<"Attendee"> | number
   dietary?: Prisma.EnumDietaryFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableFilter<"Attendee"> | string | null
@@ -302,6 +322,8 @@ export type AttendeeOrderByWithAggregationInput = {
   inviteId?: Prisma.SortOrderInput | Prisma.SortOrder
   token?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -323,6 +345,8 @@ export type AttendeeScalarWhereWithAggregatesInput = {
   inviteId?: Prisma.UuidNullableWithAggregatesFilter<"Attendee"> | string | null
   token?: Prisma.StringWithAggregatesFilter<"Attendee"> | string
   fullName?: Prisma.StringWithAggregatesFilter<"Attendee"> | string
+  email?: Prisma.StringNullableWithAggregatesFilter<"Attendee"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"Attendee"> | string | null
   age?: Prisma.IntWithAggregatesFilter<"Attendee"> | number
   dietary?: Prisma.EnumDietaryWithAggregatesFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableWithAggregatesFilter<"Attendee"> | string | null
@@ -334,6 +358,8 @@ export type AttendeeCreateInput = {
   id?: string
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -350,6 +376,8 @@ export type AttendeeUncheckedCreateInput = {
   inviteId?: string | null
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -362,6 +390,8 @@ export type AttendeeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -378,6 +408,8 @@ export type AttendeeUncheckedUpdateInput = {
   inviteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -392,6 +424,8 @@ export type AttendeeCreateManyInput = {
   inviteId?: string | null
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -403,6 +437,8 @@ export type AttendeeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -416,6 +452,8 @@ export type AttendeeUncheckedUpdateManyInput = {
   inviteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -444,6 +482,8 @@ export type AttendeeCountOrderByAggregateInput = {
   inviteId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   age?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrder
@@ -461,6 +501,8 @@ export type AttendeeMaxOrderByAggregateInput = {
   inviteId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   age?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrder
@@ -474,6 +516,8 @@ export type AttendeeMinOrderByAggregateInput = {
   inviteId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   age?: Prisma.SortOrder
   dietary?: Prisma.SortOrder
   table?: Prisma.SortOrder
@@ -594,6 +638,8 @@ export type AttendeeCreateWithoutEventInput = {
   id?: string
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -608,6 +654,8 @@ export type AttendeeUncheckedCreateWithoutEventInput = {
   inviteId?: string | null
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -651,6 +699,8 @@ export type AttendeeScalarWhereInput = {
   inviteId?: Prisma.UuidNullableFilter<"Attendee"> | string | null
   token?: Prisma.StringFilter<"Attendee"> | string
   fullName?: Prisma.StringFilter<"Attendee"> | string
+  email?: Prisma.StringNullableFilter<"Attendee"> | string | null
+  phone?: Prisma.StringNullableFilter<"Attendee"> | string | null
   age?: Prisma.IntFilter<"Attendee"> | number
   dietary?: Prisma.EnumDietaryFilter<"Attendee"> | $Enums.Dietary
   table?: Prisma.StringNullableFilter<"Attendee"> | string | null
@@ -662,6 +712,8 @@ export type AttendeeCreateWithoutInviteInput = {
   id?: string
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -676,6 +728,8 @@ export type AttendeeUncheckedCreateWithoutInviteInput = {
   eventId: string
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -704,6 +758,8 @@ export type AttendeeUpdateWithoutInviteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -718,6 +774,8 @@ export type AttendeeUncheckedUpdateWithoutInviteInput = {
   eventId?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -730,6 +788,8 @@ export type AttendeeCreateWithoutCheckInsInput = {
   id?: string
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -745,6 +805,8 @@ export type AttendeeUncheckedCreateWithoutCheckInsInput = {
   inviteId?: string | null
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -772,6 +834,8 @@ export type AttendeeUpdateWithoutCheckInsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -787,6 +851,8 @@ export type AttendeeUncheckedUpdateWithoutCheckInsInput = {
   inviteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -799,6 +865,8 @@ export type AttendeeCreateManyEventInput = {
   inviteId?: string | null
   token: string
   fullName: string
+  email?: string | null
+  phone?: string | null
   age: number
   dietary?: $Enums.Dietary
   table?: string | null
@@ -810,6 +878,8 @@ export type AttendeeUpdateWithoutEventInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -824,6 +894,8 @@ export type AttendeeUncheckedUpdateWithoutEventInput = {
   inviteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -837,6 +909,8 @@ export type AttendeeUncheckedUpdateManyWithoutEventInput = {
   inviteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   token?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.IntFieldUpdateOperationsInput | number
   dietary?: Prisma.EnumDietaryFieldUpdateOperationsInput | $Enums.Dietary
   table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -881,6 +955,8 @@ export type AttendeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   inviteId?: boolean
   token?: boolean
   fullName?: boolean
+  email?: boolean
+  phone?: boolean
   age?: boolean
   dietary?: boolean
   table?: boolean
@@ -898,6 +974,8 @@ export type AttendeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   inviteId?: boolean
   token?: boolean
   fullName?: boolean
+  email?: boolean
+  phone?: boolean
   age?: boolean
   dietary?: boolean
   table?: boolean
@@ -913,6 +991,8 @@ export type AttendeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   inviteId?: boolean
   token?: boolean
   fullName?: boolean
+  email?: boolean
+  phone?: boolean
   age?: boolean
   dietary?: boolean
   table?: boolean
@@ -928,6 +1008,8 @@ export type AttendeeSelectScalar = {
   inviteId?: boolean
   token?: boolean
   fullName?: boolean
+  email?: boolean
+  phone?: boolean
   age?: boolean
   dietary?: boolean
   table?: boolean
@@ -935,7 +1017,7 @@ export type AttendeeSelectScalar = {
   checkedInAt?: boolean
 }
 
-export type AttendeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "inviteId" | "token" | "fullName" | "age" | "dietary" | "table" | "registeredAt" | "checkedInAt", ExtArgs["result"]["attendee"]>
+export type AttendeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "inviteId" | "token" | "fullName" | "email" | "phone" | "age" | "dietary" | "table" | "registeredAt" | "checkedInAt", ExtArgs["result"]["attendee"]>
 export type AttendeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   invite?: boolean | Prisma.Attendee$inviteArgs<ExtArgs>
@@ -964,6 +1046,8 @@ export type $AttendeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     inviteId: string | null
     token: string
     fullName: string
+    email: string | null
+    phone: string | null
     age: number
     dietary: $Enums.Dietary
     table: string | null
@@ -1400,6 +1484,8 @@ export interface AttendeeFieldRefs {
   readonly inviteId: Prisma.FieldRef<"Attendee", 'String'>
   readonly token: Prisma.FieldRef<"Attendee", 'String'>
   readonly fullName: Prisma.FieldRef<"Attendee", 'String'>
+  readonly email: Prisma.FieldRef<"Attendee", 'String'>
+  readonly phone: Prisma.FieldRef<"Attendee", 'String'>
   readonly age: Prisma.FieldRef<"Attendee", 'Int'>
   readonly dietary: Prisma.FieldRef<"Attendee", 'Dietary'>
   readonly table: Prisma.FieldRef<"Attendee", 'String'>
