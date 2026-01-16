@@ -6,7 +6,11 @@ import DashboardShell from "@/components/DashboardShell";
 
 type AttendeesPageProps = {
   params: Promise<{ eventId: string }>;
-  searchParams?: Promise<{ status?: string | string[] }>;
+  searchParams?: Promise<{
+    status?: string | string[];
+    q?: string | string[];
+    page?: string | string[];
+  }>;
 };
 
 function formatDate(value: Date) {
@@ -74,11 +78,18 @@ export default async function AttendeesPage({
   const { eventId } = await params;
   const query = searchParams ? await searchParams : {};
   const rawStatus = query.status;
+  const rawSearch = query.q;
+  const rawPage = query.page;
   const statusValue = Array.isArray(rawStatus) ? rawStatus[0] : rawStatus;
   const status =
     statusValue === "checked-in" || statusValue === "not-checked-in"
       ? statusValue
       : "all";
+  const searchValue = Array.isArray(rawSearch) ? rawSearch[0] : rawSearch;
+  const search = (searchValue ?? "").trim();
+  const pageValue = Array.isArray(rawPage) ? rawPage[0] : rawPage;
+  const parsedPage = pageValue ? Number.parseInt(pageValue, 10) : 1;
+  const page = Number.isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
   const user = await getCurrentUser();
   if (!user) {
     redirect("/");
@@ -100,14 +111,38 @@ export default async function AttendeesPage({
         ? { checkedInAt: null }
         : {};
 
-  const [totalCount, checkedInCount, attendees] = await prisma.$transaction([
-    prisma.attendee.count({ where: { eventId: event.id } }),
-    prisma.attendee.count({
+  const searchFilter = search
+    ? {
+        OR: [
+          { fullName: { contains: search, mode: "insensitive" } },
+          { email: { contains: search, mode: "insensitive" } },
+          { phone: { contains: search, mode: "insensitive" } },
+        ],
+      }
+    : {};
+  const attendeeWhere = { eventId: event.id, ...attendeeFilter, ...searchFilter };
+  const pageSize = 12;
+
+  const {
+    totalCount,
+    checkedInCount,
+    filteredCount,
+    attendees,
+    currentPage,
+    totalPages,
+  } = await prisma.$transaction(async (tx) => {
+    const total = await tx.attendee.count({ where: { eventId: event.id } });
+    const checkedIn = await tx.attendee.count({
       where: { eventId: event.id, checkedInAt: { not: null } },
-    }),
-    prisma.attendee.findMany({
-      where: { eventId: event.id, ...attendeeFilter },
+    });
+    const filtered = await tx.attendee.count({ where: attendeeWhere });
+    const pages = Math.max(1, Math.ceil(filtered / pageSize));
+    const safePage = Math.min(page, pages);
+    const data = await tx.attendee.findMany({
+      where: attendeeWhere,
       orderBy: { registeredAt: "desc" },
+      skip: (safePage - 1) * pageSize,
+      take: pageSize,
       select: {
         id: true,
         fullName: true,
@@ -128,15 +163,43 @@ export default async function AttendeesPage({
           },
         },
       },
-    }),
-  ]);
+    });
+
+    return {
+      totalCount: total,
+      checkedInCount: checkedIn,
+      filteredCount: filtered,
+      attendees: data,
+      currentPage: safePage,
+      totalPages: pages,
+    };
+  });
   const notCheckedInCount = totalCount - checkedInCount;
   const basePath = `/dashboard/events/${event.id}/attendees`;
+  const buildHref = (
+    nextStatus: string,
+    nextSearch: string,
+    nextPage: number
+  ) => {
+    const params = new URLSearchParams();
+    if (nextStatus !== "all") {
+      params.set("status", nextStatus);
+    }
+    if (nextSearch) {
+      params.set("q", nextSearch);
+    }
+    if (nextPage > 1) {
+      params.set("page", String(nextPage));
+    }
+    const queryString = params.toString();
+    return queryString ? `${basePath}?${queryString}` : basePath;
+  };
   const statusFilters = [
     { key: "all", label: "All", count: totalCount },
     { key: "checked-in", label: "Checked in", count: checkedInCount },
     { key: "not-checked-in", label: "Not checked in", count: notCheckedInCount },
   ] as const;
+  const showPagination = totalPages > 1;
 
   return (
     <DashboardShell userEmail={user.email} current="attendees" eventId={event.id}>
@@ -157,10 +220,7 @@ export default async function AttendeesPage({
             <div className="flex flex-wrap gap-2">
               {statusFilters.map((filter) => {
                 const isActive = status === filter.key;
-                const href =
-                  filter.key === "all"
-                    ? basePath
-                    : `${basePath}?status=${filter.key}`;
+                const href = buildHref(filter.key, search, 1);
 
                 return (
                   <Link
@@ -214,9 +274,46 @@ export default async function AttendeesPage({
                 Attendee List
               </p>
               <h2 className="mt-2 text-lg font-semibold text-[#1b1a18]">
-                {attendees.length} showing
+                {filteredCount} total
               </h2>
+              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                Page {currentPage} of {totalPages}
+              </p>
             </div>
+            <form action={basePath} className="flex flex-col gap-2">
+              {status !== "all" ? (
+                <input type="hidden" name="status" value={status} />
+              ) : null}
+              <label
+                htmlFor="attendee-search"
+                className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]"
+              >
+                Search
+              </label>
+              <div className="flex flex-wrap items-center gap-2">
+                <input
+                  id="attendee-search"
+                  name="q"
+                  defaultValue={search}
+                  placeholder="Search name, email, or phone"
+                  className="h-10 w-64 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-3 text-sm text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+                />
+                <button
+                  type="submit"
+                  className="h-10 rounded-full bg-[#1b1a18] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#f4efe4] transition hover:bg-[#2a2724]"
+                >
+                  Search
+                </button>
+                {search ? (
+                  <Link
+                    href={buildHref(status, "", 1)}
+                    className="h-10 rounded-full border border-[#d9c9b9] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#5b4a3d] transition hover:bg-[#fbf8f2]"
+                  >
+                    Clear
+                  </Link>
+                ) : null}
+              </div>
+            </form>
           </div>
 
           <div className="mt-6 space-y-3">
@@ -331,6 +428,39 @@ export default async function AttendeesPage({
               })
             )}
           </div>
+          {showPagination ? (
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                Showing {attendees.length} of {filteredCount}
+              </p>
+              <div className="flex items-center gap-2">
+                {currentPage > 1 ? (
+                  <Link
+                    href={buildHref(status, search, currentPage - 1)}
+                    className="rounded-full border border-[#d9c9b9] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#5b4a3d] transition hover:bg-[#fbf8f2]"
+                  >
+                    Previous
+                  </Link>
+                ) : (
+                  <span className="rounded-full border border-[#e3d6c8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#b9a998]">
+                    Previous
+                  </span>
+                )}
+                {currentPage < totalPages ? (
+                  <Link
+                    href={buildHref(status, search, currentPage + 1)}
+                    className="rounded-full border border-[#1b1a18] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                  >
+                    Next
+                  </Link>
+                ) : (
+                  <span className="rounded-full border border-[#e3d6c8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#b9a998]">
+                    Next
+                  </span>
+                )}
+              </div>
+            </div>
+          ) : null}
         </section>
       </div>
     </DashboardShell>
