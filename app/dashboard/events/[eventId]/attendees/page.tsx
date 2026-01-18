@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import DashboardShell from "@/components/DashboardShell";
+import EventBreadcrumbs from "@/components/EventBreadcrumbs";
 
 type AttendeesPageProps = {
   params: Promise<{ eventId: string }>;
@@ -207,9 +208,11 @@ export default async function AttendeesPage({
         <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
-                Attendees
-              </p>
+              <EventBreadcrumbs
+                eventId={event.id}
+                eventName={event.name}
+                current="Attendees"
+              />
               <h1 className="mt-2 text-2xl font-semibold text-[#1b1a18]">
                 {event.name}
               </h1>
@@ -318,11 +321,21 @@ export default async function AttendeesPage({
 
           <div className="mt-6 space-y-3">
             {attendees.length === 0 ? (
-              <p className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
-                {totalCount === 0
-                  ? "No attendees yet. Share invites to start registrations."
-                  : "No attendees match this filter yet."}
-              </p>
+              totalCount === 0 ? (
+                <div className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                  <p>No attendees yet. Share invites to start registrations.</p>
+                  <Link
+                    href={`/dashboard/events/${event.id}/invites`}
+                    className="mt-3 inline-flex items-center rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                  >
+                    Send invites
+                  </Link>
+                </div>
+              ) : (
+                <p className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                  No attendees match this filter yet.
+                </p>
+              )
             ) : (
               attendees.map((attendee) => {
                 const isCheckedIn = Boolean(attendee.checkedInAt);
@@ -466,4 +479,3 @@ export default async function AttendeesPage({
     </DashboardShell>
   );
 }
-

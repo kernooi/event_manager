@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import ToastProvider from "@/components/ToastProvider";
 
 const displayFont = Fraunces({
   variable: "--font-display",
@@ -25,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${displayFont.variable} ${bodyFont.variable} antialiased`}>
-        {children}
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );

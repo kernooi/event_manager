@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type ProfileMenuProps = {
@@ -39,20 +40,20 @@ export default function ProfileMenu({ email }: ProfileMenuProps) {
             {email}
           </div>
           <div className="h-px bg-[#f1e7dc]" />
-          <button
-            type="button"
+          <Link
+            href="/dashboard/profile"
+            onClick={() => setOpen(false)}
             className="flex w-full items-center rounded-xl px-3 py-2 text-left text-[#5b4a3d] transition hover:bg-[#f8f1e8]"
-            aria-disabled="true"
           >
             Profile
-          </button>
-          <button
-            type="button"
+          </Link>
+          <Link
+            href="/dashboard/settings"
+            onClick={() => setOpen(false)}
             className="flex w-full items-center rounded-xl px-3 py-2 text-left text-[#5b4a3d] transition hover:bg-[#f8f1e8]"
-            aria-disabled="true"
           >
             Settings
-          </button>
+          </Link>
           <button
             type="button"
             onClick={handleLogout}

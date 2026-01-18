@@ -2,19 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ToastProvider";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function CreateEventCard() {
   const router = useRouter();
+  const { pushToast } = useToast();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
-  const [message, setMessage] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
-    setMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -36,19 +36,19 @@ export default function CreateEventCard() {
         const data = (await response.json().catch(() => null)) as
           | { error?: string }
           | null;
-        setStatus("error");
-        setMessage(data?.error || "Unable to create event.");
+        setStatus("idle");
+        pushToast(data?.error || "Unable to create event.", "error");
         return;
       }
 
-      setStatus("success");
-      setMessage("Event created.");
+      setStatus("idle");
+      pushToast("Event created.", "success");
       form.reset();
       setOpen(false);
       router.refresh();
     } catch (error) {
-      setStatus("error");
-      setMessage("Network error. Try again.");
+      setStatus("idle");
+      pushToast("Network error. Try again.", "error");
     }
   }
 
@@ -73,7 +73,11 @@ export default function CreateEventCard() {
       </div>
 
       {open ? (
-        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-6 flex flex-col gap-4"
+          aria-busy={status === "loading"}
+        >
           <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
             Event name
             <input
@@ -118,18 +122,6 @@ export default function CreateEventCard() {
           >
             {status === "loading" ? "Creating..." : "Create Event"}
           </button>
-          {message ? (
-            <p
-              className={`rounded-xl px-4 py-3 text-sm ${
-                status === "success"
-                  ? "bg-[#eff7f1] text-[#21523b]"
-                  : "bg-[#fff1ed] text-[#7a3327]"
-              }`}
-              role="status"
-            >
-              {message}
-            </p>
-          ) : null}
         </form>
       ) : (
         <p className="mt-4 text-sm text-[#6b5a4a]">

@@ -37,6 +37,8 @@ model Event {
   attendees Attendee[]
   checkIns  CheckIn[]
   registrationFields RegistrationField[]
+
+  @@index([ownerId])
 }
 
 model Invite {
@@ -50,6 +52,9 @@ model Invite {
   usedAt    DateTime?
   createdAt DateTime     @default(now())
   attendee  Attendee?
+
+  @@index([eventId])
+  @@index([eventId, usedAt])
 }
 
 model Attendee {
@@ -70,6 +75,9 @@ model Attendee {
   checkedInAt  DateTime?
   checkIns     CheckIn[]
   answers      RegistrationAnswer[]
+
+  @@index([eventId, registeredAt])
+  @@index([eventId, checkedInAt])
 }
 
 model CheckIn {
@@ -81,6 +89,8 @@ model CheckIn {
   scannedBy  String   @db.Uuid
   scanner    User     @relation("CheckInScanner", fields: [scannedBy], references: [id])
   scannedAt  DateTime @default(now())
+
+  @@index([eventId])
 }
 
 model Session {
@@ -103,6 +113,8 @@ model RegistrationField {
   order     Int       @default(0)
   createdAt DateTime  @default(now())
   answers   RegistrationAnswer[]
+
+  @@index([eventId])
 }
 
 model RegistrationAnswer {

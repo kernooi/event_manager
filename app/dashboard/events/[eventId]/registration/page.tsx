@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import DashboardShell from "@/components/DashboardShell";
 import RegistrationFieldsEditor from "@/components/RegistrationFieldsEditor";
+import EventBreadcrumbs from "@/components/EventBreadcrumbs";
 
 type RegistrationPageProps = {
   params: Promise<{ eventId: string }>;
@@ -44,9 +45,11 @@ export default async function RegistrationPage({
     >
       <div className="flex flex-col gap-6">
         <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
-          <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
-            Registration Form
-          </p>
+          <EventBreadcrumbs
+            eventId={event.id}
+            eventName={event.name}
+            current="Registration"
+          />
           <h1 className="mt-2 text-2xl font-semibold text-[#1b1a18]">
             {event.name}
           </h1>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useToast } from "@/components/ToastProvider";
 
 type Field = {
   id: string;
@@ -21,15 +22,14 @@ export default function RegistrationFieldsEditor({
   eventId,
   initialFields,
 }: RegistrationFieldsEditorProps) {
+  const { pushToast } = useToast();
   const [fields, setFields] = useState<Field[]>(initialFields);
   const [fieldType, setFieldType] = useState("TEXT");
   const [status, setStatus] = useState<Status>("idle");
-  const [message, setMessage] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
-    setMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -62,20 +62,20 @@ export default function RegistrationFieldsEditor({
         const data = (await response.json().catch(() => null)) as
           | { error?: string }
           | null;
-        setStatus("error");
-        setMessage(data?.error || "Unable to add field.");
+        setStatus("idle");
+        pushToast(data?.error || "Unable to add field.", "error");
         return;
       }
 
       const data = (await response.json()) as { field: Field };
       setFields((prev) => [...prev, data.field]);
-      setStatus("success");
-      setMessage("Field added.");
+      setStatus("idle");
+      pushToast("Field added.", "success");
       form.reset();
       setFieldType("TEXT");
     } catch (error) {
-      setStatus("error");
-      setMessage("Network error. Try again.");
+      setStatus("idle");
+      pushToast("Network error. Try again.", "error");
     }
   }
 
@@ -158,7 +158,11 @@ export default function RegistrationFieldsEditor({
             Customize this event form
           </h3>
         </div>
-        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-6 flex flex-col gap-4"
+          aria-busy={status === "loading"}
+        >
           <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
             Question label
             <input
@@ -207,18 +211,6 @@ export default function RegistrationFieldsEditor({
           >
             {status === "loading" ? "Saving..." : "Add Field"}
           </button>
-          {message ? (
-            <p
-              className={`rounded-xl px-4 py-3 text-sm ${
-                status === "success"
-                  ? "bg-[#eff7f1] text-[#21523b]"
-                  : "bg-[#fff1ed] text-[#7a3327]"
-              }`}
-              role="status"
-            >
-              {message}
-            </p>
-          ) : null}
         </form>
       </div>
     </div>

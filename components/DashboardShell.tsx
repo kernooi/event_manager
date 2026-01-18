@@ -3,7 +3,15 @@ import ProfileMenu from "@/components/ProfileMenu";
 
 type DashboardShellProps = {
   userEmail: string;
-  current: "overview" | "registration" | "invites" | "attendees" | "checkin";
+  current:
+    | "overview"
+    | "registration"
+    | "invites"
+    | "attendees"
+    | "checkin"
+    | "profile"
+    | "settings"
+    | "loading";
   eventId?: string | null;
   children: React.ReactNode;
 };

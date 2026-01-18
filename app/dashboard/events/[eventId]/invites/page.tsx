@@ -1,8 +1,10 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import DashboardShell from "@/components/DashboardShell";
 import InviteSender from "@/components/InviteSender";
+import EventBreadcrumbs from "@/components/EventBreadcrumbs";
 
 type InvitesPageProps = {
   params: Promise<{ eventId: string }>;
@@ -48,9 +50,11 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
     <DashboardShell userEmail={user.email} current="invites" eventId={event.id}>
       <div className="flex flex-col gap-6">
         <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
-          <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
-            Invites
-          </p>
+          <EventBreadcrumbs
+            eventId={event.id}
+            eventName={event.name}
+            current="Invites"
+          />
           <h1 className="mt-2 text-2xl font-semibold text-[#1b1a18]">
             {event.name}
           </h1>
@@ -74,10 +78,15 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
 
             <div className="mt-6 space-y-3">
               {invites.length === 0 ? (
-                <p className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
-                  No invites yet. Send the first invite from the panel on the
-                  right.
-                </p>
+                <div className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                  <p>No invites yet. Send the first invite to start RSVPs.</p>
+                  <Link
+                    href="#send-invite"
+                    className="mt-3 inline-flex items-center rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                  >
+                    Send first invite
+                  </Link>
+                </div>
               ) : (
                 invites.map((invite) => {
                   const statusStyles =
@@ -119,7 +128,9 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
             </div>
           </section>
 
-          <InviteSender eventId={event.id} />
+          <div id="send-invite">
+            <InviteSender eventId={event.id} />
+          </div>
         </div>
       </div>
     </DashboardShell>

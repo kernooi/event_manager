@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ToastProvider";
 
 type InviteSenderProps = {
   eventId: string;
@@ -11,13 +12,12 @@ type Status = "idle" | "loading" | "success" | "error";
 
 export default function InviteSender({ eventId }: InviteSenderProps) {
   const router = useRouter();
+  const { pushToast } = useToast();
   const [status, setStatus] = useState<Status>("idle");
-  const [message, setMessage] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
-    setMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -34,18 +34,18 @@ export default function InviteSender({ eventId }: InviteSenderProps) {
         const data = (await response.json().catch(() => null)) as
           | { error?: string }
           | null;
-        setStatus("error");
-        setMessage(data?.error || "Unable to send invite.");
+        setStatus("idle");
+        pushToast(data?.error || "Unable to send invite.", "error");
         return;
       }
 
-      setStatus("success");
-      setMessage("Invite sent.");
+      setStatus("idle");
+      pushToast("Invite sent.", "success");
       form.reset();
       router.refresh();
     } catch (error) {
-      setStatus("error");
-      setMessage("Network error. Please try again.");
+      setStatus("idle");
+      pushToast("Network error. Please try again.", "error");
     }
   }
 
@@ -53,6 +53,7 @@ export default function InviteSender({ eventId }: InviteSenderProps) {
     <form
       onSubmit={handleSubmit}
       className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]"
+      aria-busy={status === "loading"}
     >
       <div>
         <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
@@ -84,19 +85,6 @@ export default function InviteSender({ eventId }: InviteSenderProps) {
       >
         {status === "loading" ? "Sending..." : "Send Invite"}
       </button>
-
-      {message ? (
-        <p
-          className={`mt-4 rounded-xl px-4 py-3 text-sm ${
-            status === "error"
-              ? "bg-[#fff1ed] text-[#7a3327]"
-              : "bg-[#eff7f1] text-[#21523b]"
-          }`}
-          role="status"
-        >
-          {message}
-        </p>
-      ) : null}
     </form>
   );
 }

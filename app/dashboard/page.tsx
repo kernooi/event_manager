@@ -77,14 +77,6 @@ export default async function DashboardPage() {
                 Welcome back, {user.email}
               </h1>
             </div>
-            <div className="flex flex-wrap gap-3 text-sm text-[#6b5a4a]">
-              <span className="rounded-full border border-[#d9c9b9] px-4 py-2">
-                Total events: {events.length}
-              </span>
-              <span className="rounded-full border border-[#d9c9b9] px-4 py-2">
-                Total registered: {totalRegistered}
-              </span>
-            </div>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <div className="rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] p-4">
