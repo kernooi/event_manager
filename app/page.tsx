@@ -40,6 +40,7 @@ export default function Home() {
       setStatus("success");
       setMessage("Welcome back. You are cleared to continue.");
       router.push("/dashboard");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setStatus("error");
       setMessage("Network error. Please retry in a moment.");
@@ -56,7 +57,7 @@ export default function Home() {
 
       <main className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-10 px-6 py-16 lg:flex-row lg:items-center lg:justify-between">
         <section className="flex max-w-xl flex-col gap-6">
-          <h1 className="text-4xl font-semibold leading-tight text-[#1b1a18] sm:text-5xl lg:text-6xl font-[var(--font-display)]">
+          <h1 className="text-4xl font-semibold leading-tight text-[#1b1a18] sm:text-5xl lg:text-6xl">
             Events Manager
           </h1>
           <p className="text-lg leading-relaxed text-[#4a3e35]">
@@ -79,7 +80,7 @@ export default function Home() {
             <p className="text-xs uppercase tracking-[0.3em] text-[#7a5b48]">
               Member Login
             </p>
-            <h2 className="text-2xl font-semibold text-[#1b1a18] font-[var(--font-display)]">
+            <h2 className="text-2xl font-semibold text-[#1b1a18]">
               Sign in to your dashboard
             </h2>
             <p className="text-sm text-[#6b5a4a]">
