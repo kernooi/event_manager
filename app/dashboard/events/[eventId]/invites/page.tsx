@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
@@ -79,13 +78,7 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
             <div className="mt-6 space-y-3">
               {invites.length === 0 ? (
                 <div className="rounded-xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
-                  <p>No invites yet. Send the first invite to start RSVPs.</p>
-                  <Link
-                    href="#send-invite"
-                    className="mt-3 inline-flex items-center rounded-full border border-[#0f172a] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
-                  >
-                    Send first invite
-                  </Link>
+                  No invites yet. Send the first invite to start RSVPs.
                 </div>
               ) : (
                 invites.map((invite) => {

@@ -268,16 +268,8 @@ export default async function EventOverviewPage({
               ))}
               {recentAttendees.length === 0 ? (
                 <div className="rounded-xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
-                  <p>
-                    No registrations yet. Share the invite link to collect guest
-                    details.
-                  </p>
-                  <Link
-                    href={`/dashboard/events/${event.id}/invites`}
-                    className="mt-3 inline-flex items-center rounded-full border border-[#0f172a] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
-                  >
-                    Send invites
-                  </Link>
+                  No registrations yet. Share the invite link to collect guest
+                  details.
                 </div>
               ) : null}
             </div>
