@@ -32,14 +32,14 @@ function createToastId() {
 
 function getToastStyles(variant: ToastVariant) {
   if (variant === "success") {
-    return "border-[#cfe6d7] bg-[#eff7f1] text-[#21523b]";
+    return "border-[#bbf7d0] bg-[#ecfdf3] text-[#166534]";
   }
 
   if (variant === "error") {
-    return "border-[#f3cbc2] bg-[#fff1ed] text-[#7a3327]";
+    return "border-[#fecaca] bg-[#fef2f2] text-[#991b1b]";
   }
 
-  return "border-[#eadbce] bg-[#fbf8f2] text-[#5b4a3d]";
+  return "border-[#e2e8f0] bg-[#f8fafc] text-[#64748b]";
 }
 
 export function useToast() {
@@ -83,7 +83,7 @@ export default function ToastProvider({
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`flex items-start justify-between gap-3 rounded-2xl border px-4 py-3 text-sm shadow-[0_20px_50px_-35px_rgba(27,26,24,0.6)] ${getToastStyles(
+            className={`flex items-start justify-between gap-3 rounded-2xl border px-4 py-3 text-sm shadow-[0_20px_50px_-35px_rgba(15,23,42,0.5)] ${getToastStyles(
               toast.variant
             )}`}
           >
@@ -102,3 +102,5 @@ export default function ToastProvider({
     </ToastContext.Provider>
   );
 }
+
+

@@ -53,20 +53,20 @@ export default function CreateEventCard() {
   }
 
   return (
-    <div className="rounded-3xl border border-[#d9c9b9] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+    <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+          <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
             Create Event
           </p>
-          <h3 className="text-lg font-semibold text-[#1b1a18]">
+          <h3 className="text-lg font-semibold text-[#0f172a]">
             Launch a new experience
           </h3>
         </div>
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="rounded-full border border-[#1b1a18] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+          className="rounded-full border border-[#0f172a] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
         >
           {open ? "Close" : "New"}
         </button>
@@ -78,53 +78,53 @@ export default function CreateEventCard() {
           className="mt-6 flex flex-col gap-4"
           aria-busy={status === "loading"}
         >
-          <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+          <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
             Event name
             <input
               name="name"
               required
               placeholder="Summer Gala"
-              className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+              className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
             />
           </label>
           <div className="grid gap-4 sm:grid-cols-2">
-            <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+            <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
               Start date
               <input
                 name="startAt"
                 type="date"
                 required
-                className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+                className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
-            <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+            <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
               End date
               <input
                 name="endAt"
                 type="date"
                 required
-                className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+                className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
           </div>
-          <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+          <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
             Location
             <input
               name="location"
               placeholder="120 King Street, Brooklyn"
-              className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+              className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
             />
           </label>
           <button
             type="submit"
             disabled={status === "loading"}
-            className="mt-2 flex h-11 items-center justify-center rounded-full bg-[#1b1a18] text-xs font-semibold uppercase tracking-[0.3em] text-[#f4efe4] transition hover:bg-[#2a2724] disabled:cursor-not-allowed disabled:opacity-70"
+            className="mt-2 flex h-11 items-center justify-center rounded-full bg-[#0f172a] text-xs font-semibold uppercase tracking-[0.3em] text-[#f5f7fb] transition hover:bg-[#1e293b] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {status === "loading" ? "Creating..." : "Create Event"}
           </button>
         </form>
       ) : (
-        <p className="mt-4 text-sm text-[#6b5a4a]">
+        <p className="mt-4 text-sm text-[#64748b]">
           Add a new event, set its dates, and start building the registration
           flow.
         </p>
@@ -132,3 +132,5 @@ export default function CreateEventCard() {
     </div>
   );
 }
+
+

@@ -50,13 +50,13 @@ function getStatus(startAt: Date | null, endAt: Date | null, now: Date) {
 function getStatusStyles(status: string) {
   switch (status) {
     case "Upcoming":
-      return "bg-[#fdf3e8] text-[#9a5a2c]";
+      return "bg-[#fef3c7] text-[#92400e]";
     case "Ongoing":
-      return "bg-[#e9f3ef] text-[#2f6d4f]";
+      return "bg-[#ecfdf3] text-[#166534]";
     case "Past":
-      return "bg-[#f2f1ef] text-[#6b5a4a]";
+      return "bg-[#f1f5f9] text-[#64748b]";
     default:
-      return "bg-[#f1e7dc] text-[#7a5b48]";
+      return "bg-[#e2e8f0] text-[#4c5b78]";
   }
 }
 
@@ -147,7 +147,6 @@ export default async function EventOverviewPage({
   const status = getStatus(event.startAt, event.endAt, now);
   const statusStyles = getStatusStyles(status);
   const statusDetail = getStatusDetail(event.startAt, event.endAt, now);
-  const invitePendingCount = Math.max(inviteCount - usedInviteCount, 0);
   const notCheckedInCount = Math.max(
     event._count.attendees - checkedInCount,
     0
@@ -156,7 +155,7 @@ export default async function EventOverviewPage({
   return (
     <DashboardShell userEmail={user.email} current="overview" eventId={event.id}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <EventBreadcrumbs
@@ -164,13 +163,13 @@ export default async function EventOverviewPage({
                 eventName={event.name}
                 current="Overview"
               />
-              <h1 className="mt-2 text-2xl font-semibold text-[#1b1a18]">
+              <h1 className="mt-2 text-2xl font-semibold text-[#0f172a]">
                 {event.name}
               </h1>
-              <p className="mt-2 text-sm text-[#6b5a4a]">
+              <p className="mt-2 text-sm text-[#64748b]">
                 {formatDateRange(event.startAt, event.endAt)}
               </p>
-              <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+              <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 {event.location ? event.location : "Location TBD"}
               </p>
             </div>
@@ -180,102 +179,102 @@ export default async function EventOverviewPage({
               {status}
             </span>
           </div>
-          <p className="mt-4 text-sm text-[#6b5a4a]">{statusDetail}</p>
+          <p className="mt-4 text-sm text-[#64748b]">{statusDetail}</p>
         </section>
 
         <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-[#e3d6c8] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Registered
             </p>
-            <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+            <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
               {event._count.attendees}
             </p>
-            <p className="mt-2 text-sm text-[#6b5a4a]">
+            <p className="mt-2 text-sm text-[#64748b]">
               {checkedInCount} checked in
             </p>
           </div>
-          <div className="rounded-2xl border border-[#e3d6c8] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Invites Sent
             </p>
-            <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+            <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
               {inviteCount}
             </p>
-            <p className="mt-2 text-sm text-[#6b5a4a]">
+            <p className="mt-2 text-sm text-[#64748b]">
               {usedInviteCount} claimed
             </p>
           </div>
-          <div className="rounded-2xl border border-[#e3d6c8] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Check-ins
             </p>
-            <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+            <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
               {checkedInCount}
             </p>
-            <p className="mt-2 text-sm text-[#6b5a4a]">
+            <p className="mt-2 text-sm text-[#64748b]">
               {notCheckedInCount} remaining
             </p>
           </div>
-          <div className="rounded-2xl border border-[#e3d6c8] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Custom Questions
             </p>
-            <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+            <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
               {registrationFieldCount}
             </p>
-            <p className="mt-2 text-sm text-[#6b5a4a]">
+            <p className="mt-2 text-sm text-[#64748b]">
               Added to the form.
             </p>
           </div>
         </section>
 
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+        <div className="grid gap-6">
+          <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+                <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
                   Recent registrations
                 </p>
-                <h2 className="mt-2 text-lg font-semibold text-[#1b1a18]">
+                <h2 className="mt-2 text-lg font-semibold text-[#0f172a]">
                   Latest guests
                 </h2>
               </div>
               <Link
                 href={`/dashboard/events/${event.id}/attendees`}
-                className="rounded-full border border-[#1b1a18] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                className="rounded-full border border-[#0f172a] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
               >
                 View all
               </Link>
             </div>
-            <div className="mt-5 space-y-3 text-sm text-[#5b4a3d]">
+            <div className="mt-5 space-y-3 text-sm text-[#64748b]">
               {recentAttendees.map((attendee) => (
                 <div
                   key={attendee.id}
-                  className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] px-4 py-3"
+                  className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
                 >
                   <div>
-                    <p className="font-semibold text-[#1b1a18]">
+                    <p className="font-semibold text-[#0f172a]">
                       {attendee.fullName}
                     </p>
-                    <p className="text-xs text-[#6b5a4a]">
+                    <p className="text-xs text-[#64748b]">
                       {attendee.email || "Email not provided"}
                     </p>
                   </div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                     {formatDate(attendee.registeredAt)}
                   </p>
                 </div>
               ))}
               {recentAttendees.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                <div className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   <p>
                     No registrations yet. Share the invite link to collect guest
                     details.
                   </p>
                   <Link
                     href={`/dashboard/events/${event.id}/invites`}
-                    className="mt-3 inline-flex items-center rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                    className="mt-3 inline-flex items-center rounded-full border border-[#0f172a] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
                   >
                     Send invites
                   </Link>
@@ -283,66 +282,10 @@ export default async function EventOverviewPage({
               ) : null}
             </div>
           </section>
-
-          <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
-              Operations
-            </p>
-            <h2 className="mt-2 text-lg font-semibold text-[#1b1a18]">
-              Keep the event on track
-            </h2>
-            <p className="mt-2 text-sm text-[#6b5a4a]">
-              Review the key flows before doors open.
-            </p>
-            <div className="mt-5 space-y-3 text-sm text-[#5b4a3d]">
-              <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] px-4 py-3">
-                <div>
-                  <p className="font-semibold text-[#1b1a18]">
-                    Registration form
-                  </p>
-                  <p className="text-xs text-[#6b5a4a]">
-                    {registrationFieldCount} custom questions
-                  </p>
-                </div>
-                <Link
-                  href={`/dashboard/events/${event.id}/registration`}
-                  className="rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
-                >
-                  Edit
-                </Link>
-              </div>
-              <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] px-4 py-3">
-                <div>
-                  <p className="font-semibold text-[#1b1a18]">Invites</p>
-                  <p className="text-xs text-[#6b5a4a]">
-                    {invitePendingCount} pending, {usedInviteCount} claimed
-                  </p>
-                </div>
-                <Link
-                  href={`/dashboard/events/${event.id}/invites`}
-                  className="rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
-                >
-                  Manage
-                </Link>
-              </div>
-              <div className="flex items-center justify-between gap-3 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] px-4 py-3">
-                <div>
-                  <p className="font-semibold text-[#1b1a18]">Check-in</p>
-                  <p className="text-xs text-[#6b5a4a]">
-                    {checkedInCount} checked in
-                  </p>
-                </div>
-                <Link
-                  href={`/dashboard/events/${event.id}/checkin`}
-                  className="rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
-                >
-                  Open
-                </Link>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
     </DashboardShell>
   );
 }
+
+

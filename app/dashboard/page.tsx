@@ -67,50 +67,50 @@ export default async function DashboardPage() {
   return (
     <DashboardShell userEmail={user.email} current="overview" eventId={null}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
                 Overview
               </p>
-              <h1 className="text-2xl font-semibold text-[#1b1a18]">
+              <h1 className="text-2xl font-semibold text-[#0f172a]">
                 Welcome back, {user.email}
               </h1>
             </div>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Total Events
               </p>
-              <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+              <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
                 {events.length}
               </p>
-              <p className="mt-2 text-sm text-[#6b5a4a]">
+              <p className="mt-2 text-sm text-[#64748b]">
                 Active planning pipelines.
               </p>
             </div>
-            <div className="rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Total Registered
               </p>
-              <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+              <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
                 {totalRegistered}
               </p>
-              <p className="mt-2 text-sm text-[#6b5a4a]">
+              <p className="mt-2 text-sm text-[#64748b]">
                 Guests across all events.
               </p>
             </div>
-            <div className="rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Next Upcoming
               </p>
-              <p className="mt-3 text-lg font-semibold text-[#1b1a18]">
+              <p className="mt-3 text-lg font-semibold text-[#0f172a]">
                 {upcomingEvent
                   ? upcomingEvent.name
                   : "No upcoming events"}
               </p>
-              <p className="mt-2 text-sm text-[#6b5a4a]">
+              <p className="mt-2 text-sm text-[#64748b]">
                 {upcomingEvent
                   ? formatDateRange(upcomingEvent.startAt, upcomingEvent.endAt)
                   : "Schedule the next experience."}
@@ -121,37 +121,37 @@ export default async function DashboardPage() {
 
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <CreateEventCard />
-          <div className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+          <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
               Status Overview
             </p>
-            <h3 className="mt-2 text-lg font-semibold text-[#1b1a18]">
+            <h3 className="mt-2 text-lg font-semibold text-[#0f172a]">
               Event pipeline at a glance
             </h3>
-            <div className="mt-6 space-y-4 text-sm text-[#5b4a3d]">
+            <div className="mt-6 space-y-4 text-sm text-[#64748b]">
               {events.slice(0, 4).map((event) => {
                 const status = getStatus(event.startAt, event.endAt, now);
                 return (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] px-4 py-3"
+                    className="flex items-center justify-between rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
                   >
                     <div>
-                      <p className="font-semibold text-[#1b1a18]">
+                      <p className="font-semibold text-[#0f172a]">
                         {event.name}
                       </p>
-                      <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                      <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                         {status}
                       </p>
                     </div>
-                    <p className="text-xs text-[#6b5a4a]">
+                    <p className="text-xs text-[#64748b]">
                       {formatDateRange(event.startAt, event.endAt)}
                     </p>
                   </div>
                 );
               })}
               {events.length === 0 ? (
-                <p className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                <p className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   Create your first event to see status insights.
                 </p>
               ) : null}
@@ -162,14 +162,14 @@ export default async function DashboardPage() {
         <section>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
                 Events
               </p>
-              <h2 className="text-xl font-semibold text-[#1b1a18]">
+              <h2 className="text-xl font-semibold text-[#0f172a]">
                 Your event lineup
               </h2>
             </div>
-            <p className="text-sm text-[#6b5a4a]">
+            <p className="text-sm text-[#64748b]">
               {events.length} total events
             </p>
           </div>
@@ -178,28 +178,28 @@ export default async function DashboardPage() {
               const status = getStatus(event.startAt, event.endAt, now);
               const statusStyles =
                 status === "Upcoming"
-                  ? "bg-[#fdf3e8] text-[#9a5a2c]"
+                  ? "bg-[#fef3c7] text-[#92400e]"
                   : status === "Ongoing"
-                    ? "bg-[#e9f3ef] text-[#2f6d4f]"
+                    ? "bg-[#ecfdf3] text-[#166534]"
                     : status === "Past"
-                      ? "bg-[#f2f1ef] text-[#6b5a4a]"
-                      : "bg-[#f1e7dc] text-[#7a5b48]";
+                      ? "bg-[#f1f5f9] text-[#64748b]"
+                      : "bg-[#e2e8f0] text-[#4c5b78]";
 
               return (
                 <div
                   key={event.id}
-                  className="flex flex-col gap-4 rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]"
+                  className="flex flex-col gap-4 rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="text-lg font-semibold text-[#1b1a18]">
+                      <h3 className="text-lg font-semibold text-[#0f172a]">
                         {event.name}
                       </h3>
-                      <p className="text-sm text-[#6b5a4a]">
+                      <p className="text-sm text-[#64748b]">
                         {formatDateRange(event.startAt, event.endAt)}
                       </p>
                       {event.location ? (
-                        <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                           {event.location}
                         </p>
                       ) : null}
@@ -211,14 +211,14 @@ export default async function DashboardPage() {
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-[#5b4a3d]">
-                    <span className="rounded-full border border-[#d9c9b9] px-3 py-2">
+                  <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-[#64748b]">
+                    <span className="rounded-full border border-[#d6dbe7] px-3 py-2">
                       Registered: {event._count.attendees}
                     </span>
                     <div className="flex flex-wrap gap-2">
                       <Link
                         href={`/dashboard/events/${event.id}/overview`}
-                        className="rounded-full border border-[#1b1a18] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                        className="rounded-full border border-[#0f172a] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
                       >
                         View Event
                       </Link>
@@ -230,7 +230,7 @@ export default async function DashboardPage() {
             })}
           </div>
           {events.length === 0 ? (
-            <div className="mt-6 rounded-3xl border border-dashed border-[#d9c9b9] bg-[#fbf8f2] p-6 text-sm text-[#6b5a4a]">
+            <div className="mt-6 rounded-3xl border border-dashed border-[#d6dbe7] bg-[#f8fafc] p-6 text-sm text-[#64748b]">
               No events yet. Create your first event to start collecting
               registrations.
             </div>
@@ -240,3 +240,5 @@ export default async function DashboardPage() {
     </DashboardShell>
   );
 }
+
+

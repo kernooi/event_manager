@@ -44,16 +44,16 @@ export default async function RegistrationPage({
       eventId={event.id}
     >
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
           <EventBreadcrumbs
             eventId={event.id}
             eventName={event.name}
             current="Registration"
           />
-          <h1 className="mt-2 text-2xl font-semibold text-[#1b1a18]">
+          <h1 className="mt-2 text-2xl font-semibold text-[#0f172a]">
             {event.name}
           </h1>
-          <p className="mt-2 text-sm text-[#6b5a4a]">
+          <p className="mt-2 text-sm text-[#64748b]">
             Adjust the registration questions for this event. Fixed fields are
             always collected.
           </p>
@@ -64,3 +64,5 @@ export default async function RegistrationPage({
     </DashboardShell>
   );
 }
+
+

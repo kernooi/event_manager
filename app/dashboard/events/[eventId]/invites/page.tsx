@@ -49,28 +49,28 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
   return (
     <DashboardShell userEmail={user.email} current="invites" eventId={event.id}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
           <EventBreadcrumbs
             eventId={event.id}
             eventName={event.name}
             current="Invites"
           />
-          <h1 className="mt-2 text-2xl font-semibold text-[#1b1a18]">
+          <h1 className="mt-2 text-2xl font-semibold text-[#0f172a]">
             {event.name}
           </h1>
-          <p className="mt-2 text-sm text-[#6b5a4a]">
+          <p className="mt-2 text-sm text-[#64748b]">
             Send private registration links and track invite status.
           </p>
         </section>
 
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+          <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+                <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
                   Invite List
                 </p>
-                <h2 className="mt-2 text-lg font-semibold text-[#1b1a18]">
+                <h2 className="mt-2 text-lg font-semibold text-[#0f172a]">
                   {invites.length} sent
                 </h2>
               </div>
@@ -78,11 +78,11 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
 
             <div className="mt-6 space-y-3">
               {invites.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                <div className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   <p>No invites yet. Send the first invite to start RSVPs.</p>
                   <Link
                     href="#send-invite"
-                    className="mt-3 inline-flex items-center rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                    className="mt-3 inline-flex items-center rounded-full border border-[#0f172a] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
                   >
                     Send first invite
                   </Link>
@@ -91,27 +91,27 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
                 invites.map((invite) => {
                   const statusStyles =
                     invite.status === "USED"
-                      ? "bg-[#e9f3ef] text-[#2f6d4f]"
+                      ? "bg-[#ecfdf3] text-[#166534]"
                       : invite.status === "SENT"
-                        ? "bg-[#fdf3e8] text-[#9a5a2c]"
-                        : "bg-[#f2f1ef] text-[#6b5a4a]";
+                        ? "bg-[#fef3c7] text-[#92400e]"
+                        : "bg-[#f1f5f9] text-[#64748b]";
 
                   return (
                     <div
                       key={invite.id}
-                      className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] px-4 py-3 text-sm text-[#5b4a3d]"
+                      className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-sm text-[#64748b]"
                     >
                       <div>
-                        <p className="font-semibold text-[#1b1a18]">
+                        <p className="font-semibold text-[#0f172a]">
                           {invite.email ?? "Unknown email"}
                         </p>
-                        <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                           Sent {formatDate(invite.createdAt)}
                         </p>
                       </div>
                       <div className="flex items-center gap-2">
                         {invite.usedAt ? (
-                          <span className="text-xs text-[#6b5a4a]">
+                          <span className="text-xs text-[#64748b]">
                             Used {formatDate(invite.usedAt)}
                           </span>
                         ) : null}
@@ -136,3 +136,5 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
     </DashboardShell>
   );
 }
+
+

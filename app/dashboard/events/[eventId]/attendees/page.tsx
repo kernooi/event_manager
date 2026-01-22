@@ -205,7 +205,7 @@ export default async function AttendeesPage({
   return (
     <DashboardShell userEmail={user.email} current="attendees" eventId={event.id}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <EventBreadcrumbs
@@ -213,10 +213,10 @@ export default async function AttendeesPage({
                 eventName={event.name}
                 current="Attendees"
               />
-              <h1 className="mt-2 text-2xl font-semibold text-[#1b1a18]">
+              <h1 className="mt-2 text-2xl font-semibold text-[#0f172a]">
                 {event.name}
               </h1>
-              <p className="mt-2 text-sm text-[#6b5a4a]">
+              <p className="mt-2 text-sm text-[#64748b]">
                 Review who registered and track check-ins in real time.
               </p>
             </div>
@@ -231,8 +231,8 @@ export default async function AttendeesPage({
                     href={href}
                     className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition ${
                       isActive
-                        ? "border-[#1b1a18] bg-[#1b1a18] text-[#f4efe4]"
-                        : "border-[#d9c9b9] text-[#5b4a3d] hover:bg-[#fbf8f2]"
+                        ? "border-[#0f172a] bg-[#0f172a] text-[#f5f7fb]"
+                        : "border-[#d6dbe7] text-[#64748b] hover:bg-[#f8fafc]"
                     }`}
                   >
                     {filter.label} ({filter.count})
@@ -244,42 +244,42 @@ export default async function AttendeesPage({
         </section>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-[#e3d6c8] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Registered
             </p>
-            <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+            <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
               {totalCount}
             </p>
           </div>
-          <div className="rounded-2xl border border-[#e3d6c8] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Checked in
             </p>
-            <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+            <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
               {checkedInCount}
             </p>
           </div>
-          <div className="rounded-2xl border border-[#e3d6c8] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(27,26,24,0.7)]">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Awaiting check-in
             </p>
-            <p className="mt-3 text-3xl font-semibold text-[#1b1a18]">
+            <p className="mt-3 text-3xl font-semibold text-[#0f172a]">
               {notCheckedInCount}
             </p>
           </div>
         </section>
 
-        <section className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
                 Attendee List
               </p>
-              <h2 className="mt-2 text-lg font-semibold text-[#1b1a18]">
+              <h2 className="mt-2 text-lg font-semibold text-[#0f172a]">
                 {filteredCount} total
               </h2>
-              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Page {currentPage} of {totalPages}
               </p>
             </div>
@@ -289,7 +289,7 @@ export default async function AttendeesPage({
               ) : null}
               <label
                 htmlFor="attendee-search"
-                className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]"
+                className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]"
               >
                 Search
               </label>
@@ -299,18 +299,18 @@ export default async function AttendeesPage({
                   name="q"
                   defaultValue={search}
                   placeholder="Search name, email, or phone"
-                  className="h-10 w-64 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-3 text-sm text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+                  className="h-10 w-64 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-3 text-sm text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
                 />
                 <button
                   type="submit"
-                  className="h-10 rounded-full bg-[#1b1a18] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#f4efe4] transition hover:bg-[#2a2724]"
+                  className="h-10 rounded-full bg-[#0f172a] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#f5f7fb] transition hover:bg-[#1e293b]"
                 >
                   Search
                 </button>
                 {search ? (
                   <Link
                     href={buildHref(status, "", 1)}
-                    className="flex h-10 items-center rounded-full border border-[#d9c9b9] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#5b4a3d] transition hover:bg-[#fbf8f2]"
+                    className="flex h-10 items-center rounded-full border border-[#d6dbe7] px-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#64748b] transition hover:bg-[#f8fafc]"
                   >
                     Clear
                   </Link>
@@ -322,17 +322,17 @@ export default async function AttendeesPage({
           <div className="mt-6 space-y-3">
             {attendees.length === 0 ? (
               totalCount === 0 ? (
-                <div className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                <div className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   <p>No attendees yet. Share invites to start registrations.</p>
                   <Link
                     href={`/dashboard/events/${event.id}/invites`}
-                    className="mt-3 inline-flex items-center rounded-full border border-[#1b1a18] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                    className="mt-3 inline-flex items-center rounded-full border border-[#0f172a] px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
                   >
                     Send invites
                   </Link>
                 </div>
               ) : (
-                <p className="rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+                <p className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   No attendees match this filter yet.
                 </p>
               )
@@ -340,8 +340,8 @@ export default async function AttendeesPage({
               attendees.map((attendee) => {
                 const isCheckedIn = Boolean(attendee.checkedInAt);
                 const statusStyles = isCheckedIn
-                  ? "bg-[#e9f3ef] text-[#2f6d4f]"
-                  : "bg-[#f2f1ef] text-[#6b5a4a]";
+                  ? "bg-[#ecfdf3] text-[#166534]"
+                  : "bg-[#f1f5f9] text-[#64748b]";
                 const contact = [attendee.email, attendee.phone]
                   .filter(Boolean)
                   .join(" | ");
@@ -349,15 +349,15 @@ export default async function AttendeesPage({
                 return (
                   <details
                     key={attendee.id}
-                    className="group rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] text-sm text-[#5b4a3d]"
+                    className="group rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] text-sm text-[#64748b]"
                   >
                     <summary className="cursor-pointer list-none px-4 py-4 [&::-webkit-details-marker]:hidden">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div>
-                          <p className="text-base font-semibold text-[#1b1a18]">
+                          <p className="text-base font-semibold text-[#0f172a]">
                             {attendee.fullName}
                           </p>
-                          <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                          <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                             Registered {formatDate(attendee.registeredAt)}
                           </p>
                         </div>
@@ -367,7 +367,7 @@ export default async function AttendeesPage({
                           >
                             {isCheckedIn ? "Checked in" : "Not checked in"}
                           </span>
-                          <span className="text-[#6b5a4a]">
+                          <span className="text-[#64748b]">
                             {attendee.checkedInAt
                               ? `Checked ${formatDateTime(attendee.checkedInAt)}`
                               : "No scan yet"}
@@ -376,32 +376,32 @@ export default async function AttendeesPage({
                       </div>
                     </summary>
 
-                    <div className="border-t border-[#f0e4d8] px-4 pb-4">
+                    <div className="border-t border-[#e2e8f0] px-4 pb-4">
                       <div className="mt-4 grid gap-3 text-sm sm:grid-cols-[1.2fr_0.8fr]">
                         <div>
-                          <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                          <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                             Contact
                           </p>
-                          <p className="mt-1 text-[#5b4a3d]">
+                          <p className="mt-1 text-[#64748b]">
                             {contact || "No contact details"}
                           </p>
                         </div>
                         <div>
-                          <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                          <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                             Details
                           </p>
                           <div className="mt-2 flex flex-wrap gap-2">
-                            <span className="rounded-full border border-[#d9c9b9] px-3 py-1 text-xs text-[#3f352c]">
+                            <span className="rounded-full border border-[#d6dbe7] px-3 py-1 text-xs text-[#1f2937]">
                               Age {attendee.age ?? "Not provided"}
                             </span>
-                            <span className="rounded-full border border-[#d9c9b9] px-3 py-1 text-xs text-[#3f352c]">
+                            <span className="rounded-full border border-[#d6dbe7] px-3 py-1 text-xs text-[#1f2937]">
                               {formatGender(attendee.gender)}
                             </span>
-                            <span className="rounded-full border border-[#d9c9b9] px-3 py-1 text-xs text-[#3f352c]">
+                            <span className="rounded-full border border-[#d6dbe7] px-3 py-1 text-xs text-[#1f2937]">
                               {formatDietary(attendee.dietary)}
                             </span>
                             {attendee.table ? (
-                              <span className="rounded-full border border-[#d9c9b9] px-3 py-1 text-xs text-[#3f352c]">
+                              <span className="rounded-full border border-[#d6dbe7] px-3 py-1 text-xs text-[#1f2937]">
                                 Table {attendee.table}
                               </span>
                             ) : null}
@@ -410,11 +410,11 @@ export default async function AttendeesPage({
                       </div>
 
                       <div className="mt-4">
-                        <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                           Additional Answers
                         </p>
                         {attendee.answers.length === 0 ? (
-                          <p className="mt-2 text-sm text-[#6b5a4a]">
+                          <p className="mt-2 text-sm text-[#64748b]">
                             No additional answers submitted.
                           </p>
                         ) : (
@@ -422,12 +422,12 @@ export default async function AttendeesPage({
                             {attendee.answers.map((answer) => (
                               <div
                                 key={answer.id}
-                                className="flex flex-wrap items-start justify-between gap-2 rounded-xl border border-[#eadbce] bg-white px-3 py-2 text-sm"
+                                className="flex flex-wrap items-start justify-between gap-2 rounded-xl border border-[#e2e8f0] bg-white px-3 py-2 text-sm"
                               >
-                                <span className="font-medium text-[#1b1a18]">
+                                <span className="font-medium text-[#0f172a]">
                                   {answer.field.label}
                                 </span>
-                                <span className="text-[#5b4a3d]">
+                                <span className="text-[#64748b]">
                                   {formatAnswerValue(answer.value)}
                                 </span>
                               </div>
@@ -443,31 +443,31 @@ export default async function AttendeesPage({
           </div>
           {showPagination ? (
             <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Showing {attendees.length} of {filteredCount}
               </p>
               <div className="flex items-center gap-2">
                 {currentPage > 1 ? (
                   <Link
                     href={buildHref(status, search, currentPage - 1)}
-                    className="rounded-full border border-[#d9c9b9] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#5b4a3d] transition hover:bg-[#fbf8f2]"
+                    className="rounded-full border border-[#d6dbe7] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#64748b] transition hover:bg-[#f8fafc]"
                   >
                     Previous
                   </Link>
                 ) : (
-                  <span className="rounded-full border border-[#e3d6c8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#b9a998]">
+                  <span className="rounded-full border border-[#d6dbe7] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#94a3b8]">
                     Previous
                   </span>
                 )}
                 {currentPage < totalPages ? (
                   <Link
                     href={buildHref(status, search, currentPage + 1)}
-                    className="rounded-full border border-[#1b1a18] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1b1a18] transition hover:bg-[#1b1a18] hover:text-[#f4efe4]"
+                    className="rounded-full border border-[#0f172a] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#0f172a] hover:text-[#f5f7fb]"
                   >
                     Next
                   </Link>
                 ) : (
-                  <span className="rounded-full border border-[#e3d6c8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#b9a998]">
+                  <span className="rounded-full border border-[#d6dbe7] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#94a3b8]">
                     Next
                   </span>
                 )}
@@ -479,3 +479,5 @@ export default async function AttendeesPage({
     </DashboardShell>
   );
 }
+
+

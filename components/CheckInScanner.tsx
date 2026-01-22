@@ -301,13 +301,13 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
   return (
     <div className="relative grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       {popout ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1b1a18]/50 px-6">
-          <div className="w-full max-w-sm rounded-3xl border border-[#e3d6c8] bg-white p-6 text-center shadow-[0_30px_80px_-40px_rgba(27,26,24,0.8)]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0f172a]/50 px-6">
+          <div className="w-full max-w-sm rounded-3xl border border-[#d6dbe7] bg-white p-6 text-center shadow-[0_30px_80px_-40px_rgba(15,23,42,0.65)]">
             <div
               className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${
                 popout === "success"
-                  ? "bg-[#e9f3ef] text-[#2f6d4f]"
-                  : "bg-[#fdf3e8] text-[#9a5a2c]"
+                  ? "bg-[#ecfdf3] text-[#166534]"
+                  : "bg-[#fef3c7] text-[#92400e]"
               }`}
             >
               {popout === "success" ? (
@@ -338,10 +338,10 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
                 </svg>
               )}
             </div>
-            <p className="mt-4 text-lg font-semibold text-[#1b1a18]">
+            <p className="mt-4 text-lg font-semibold text-[#0f172a]">
               {popout === "success" ? "Check-in successful" : "Already registered"}
             </p>
-            <p className="mt-2 text-sm text-[#6b5a4a]">
+            <p className="mt-2 text-sm text-[#64748b]">
               {popout === "success"
                 ? "Resuming scan in 2 seconds."
                 : "This attendee is already checked in."}
@@ -349,40 +349,40 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
           </div>
         </div>
       ) : null}
-      <div className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
+      <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+            <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
               Live Scanner
             </p>
-            <h2 className="mt-2 text-lg font-semibold text-[#1b1a18]">
+            <h2 className="mt-2 text-lg font-semibold text-[#0f172a]">
               Point the camera at the QR code
             </h2>
-            <p className="mt-2 text-sm text-[#6b5a4a]">
+            <p className="mt-2 text-sm text-[#64748b]">
               This scanner uses the front camera on phones and the webcam on
               desktop devices.
             </p>
           </div>
           {isScanning ? (
-            <span className="rounded-full bg-[#e9f3ef] px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#2f6d4f]">
+            <span className="rounded-full bg-[#ecfdf3] px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#166534]">
               Live
             </span>
           ) : null}
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2]">
+        <div className="mt-6 overflow-hidden rounded-2xl border border-[#e2e8f0] bg-[#f8fafc]">
           <video
             ref={videoRef}
-            className="aspect-video w-full bg-[#1b1a18] object-cover"
+            className="aspect-video w-full bg-[#0f172a] object-cover"
             muted
             playsInline
           />
         </div>
 
         <div className="mt-4 space-y-2 text-sm">
-          <p className="text-[#5b4a3d]">{statusMessage}</p>
+          <p className="text-[#64748b]">{statusMessage}</p>
           {errorMessage ? (
-            <p className="rounded-xl bg-[#fff1ed] px-4 py-3 text-sm text-[#7a3327]">
+            <p className="rounded-xl bg-[#fef2f2] px-4 py-3 text-sm text-[#991b1b]">
               {errorMessage}
             </p>
           ) : null}
@@ -390,8 +390,8 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
             <p
               className={`rounded-xl px-4 py-3 text-sm font-semibold ${
                 result.status === "already_checked_in"
-                  ? "bg-[#fdf3e8] text-[#9a5a2c]"
-                  : "bg-[#e9f3ef] text-[#2f6d4f]"
+                  ? "bg-[#fef3c7] text-[#92400e]"
+                  : "bg-[#ecfdf3] text-[#166534]"
               }`}
             >
               {result.status === "already_checked_in"
@@ -400,7 +400,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
             </p>
           ) : null}
           {!canScan && startsAt ? (
-            <p className="rounded-xl bg-[#fdf3e8] px-4 py-3 text-sm text-[#9a5a2c]">
+            <p className="rounded-xl bg-[#fef3c7] px-4 py-3 text-sm text-[#92400e]">
               Check-in opens at {formatStartsAt(startsAt)}.
             </p>
           ) : null}
@@ -408,9 +408,9 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
 
         <form
           onSubmit={handleManualSubmit}
-          className="mt-6 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] p-4"
+          className="mt-6 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
             Manual check-in
           </p>
           <div className="mt-3 flex flex-col gap-3 sm:flex-row">
@@ -418,39 +418,39 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
               value={manualToken}
               onChange={(event) => setManualToken(event.target.value)}
               placeholder="Paste QR link or token"
-              className="h-11 flex-1 rounded-xl border border-[#d9c9b9] bg-white px-4 text-sm text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+              className="h-11 flex-1 rounded-xl border border-[#d6dbe7] bg-white px-4 text-sm text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
             />
             <button
               type="submit"
               disabled={!manualToken.trim() || isSubmitting}
-              className="h-11 rounded-full bg-[#1b1a18] px-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#f4efe4] transition hover:bg-[#2a2724] disabled:cursor-not-allowed disabled:opacity-70"
+              className="h-11 rounded-full bg-[#0f172a] px-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#f5f7fb] transition hover:bg-[#1e293b] disabled:cursor-not-allowed disabled:opacity-70"
             >
               Check in
             </button>
           </div>
           {!scannerSupported ? (
-            <p className="mt-2 text-xs text-[#6b5a4a]">
+            <p className="mt-2 text-xs text-[#64748b]">
               Camera prompts only appear on HTTPS or localhost.
             </p>
           ) : null}
         </form>
       </div>
 
-      <div className="rounded-3xl border border-[#e3d6c8] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(27,26,24,0.7)]">
-        <p className="text-xs uppercase tracking-[0.28em] text-[#7a5b48]">
+      <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
           Latest Scan
         </p>
         {result ? (
-          <div className="mt-4 rounded-2xl border border-[#f0e4d8] bg-[#fbf8f2] p-4 text-sm text-[#5b4a3d]">
+          <div className="mt-4 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 text-sm text-[#64748b]">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="text-base font-semibold text-[#1b1a18]">
+              <p className="text-base font-semibold text-[#0f172a]">
               {result.attendeeName}
               </p>
               <span
                 className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] ${
                   result.status === "already_checked_in"
-                    ? "bg-[#fdf3e8] text-[#9a5a2c]"
-                    : "bg-[#e9f3ef] text-[#2f6d4f]"
+                    ? "bg-[#fef3c7] text-[#92400e]"
+                    : "bg-[#ecfdf3] text-[#166534]"
                 }`}
               >
                 {result.status === "already_checked_in"
@@ -458,14 +458,14 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
                   : "Checked in"}
               </span>
             </div>
-            <p className="mt-3 text-sm text-[#5b4a3d]">
+            <p className="mt-3 text-sm text-[#64748b]">
               {result.status === "already_checked_in"
                 ? `Already checked in at ${formatDateTime(result.checkedInAt)}`
                 : `Checked in at ${formatDateTime(result.checkedInAt)}`}
             </p>
           </div>
         ) : (
-          <p className="mt-4 rounded-2xl border border-dashed border-[#d9c9b9] p-4 text-sm text-[#6b5a4a]">
+          <p className="mt-4 rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
             No scans yet. The most recent scan will appear here.
           </p>
         )}
@@ -473,3 +473,5 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     </div>
   );
 }
+
+

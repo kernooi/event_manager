@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Fraunces, Space_Grotesk } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/ToastProvider";
 
-const displayFont = Fraunces({
+const displayFont = IBM_Plex_Serif({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
-const bodyFont = Space_Grotesk({
+const bodyFont = IBM_Plex_Sans({
   variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

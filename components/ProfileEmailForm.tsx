@@ -69,7 +69,7 @@ export default function ProfileEmailForm({ initialEmail }: ProfileEmailFormProps
       className="mt-4 flex flex-col gap-4"
       aria-busy={status === "loading"}
     >
-      <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+      <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
         Sign-in email
         <input
           name="email"
@@ -77,17 +77,18 @@ export default function ProfileEmailForm({ initialEmail }: ProfileEmailFormProps
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="h-11 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+          className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
         />
       </label>
 
       <button
         type="submit"
         disabled={status === "loading" || !normalizedEmail || isUnchanged}
-        className="flex h-11 items-center justify-center rounded-full bg-[#1b1a18] text-xs font-semibold uppercase tracking-[0.3em] text-[#f4efe4] transition hover:bg-[#2a2724] disabled:cursor-not-allowed disabled:opacity-70"
+        className="flex h-11 items-center justify-center rounded-full bg-[#0f172a] text-xs font-semibold uppercase tracking-[0.3em] text-[#f5f7fb] transition hover:bg-[#1e293b] disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "loading" ? "Saving..." : "Save email"}
       </button>
     </form>
   );
 }
+

@@ -38,7 +38,7 @@ export default function Home() {
       }
 
       setStatus("success");
-      setMessage("Welcome back. You are cleared to continue.");
+      setMessage("Authentication confirmed. Redirecting to your dashboard.");
       router.push("/dashboard");
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
@@ -48,76 +48,61 @@ export default function Home() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#f4efe4] text-[#1b1a18]">
+    <div className="relative min-h-screen overflow-hidden bg-[#f5f7fb] text-[#0f172a]">
       <div className="pointer-events-none absolute left-0 top-0 h-full w-full">
-        <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#f0d9c7] opacity-60 blur-3xl" />
-        <div className="absolute right-8 top-16 h-60 w-60 rounded-full bg-[#f8f4ed] opacity-80 blur-2xl" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 translate-x-32 rounded-full bg-[#e7cbb8] opacity-70 blur-3xl" />
+        <div className="absolute -left-24 top-16 h-80 w-80 rounded-full bg-[#cbd5f5] opacity-40 blur-[120px]" />
+        <div className="absolute right-20 top-0 h-64 w-64 rounded-full bg-[#dbeafe] opacity-60 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 h-96 w-96 translate-x-32 rounded-full bg-[#e2e8f0] opacity-70 blur-[140px]" />
       </div>
 
       <main className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-10 px-6 py-16 lg:flex-row lg:items-center lg:justify-between">
         <section className="flex max-w-xl flex-col gap-6">
-          <h1 className="text-4xl font-semibold leading-tight text-[#1b1a18] sm:text-5xl lg:text-6xl">
-            Events Manager
+          <h1 className="font-serif text-4xl font-semibold leading-tight text-[#0f172a] sm:text-5xl lg:text-6xl">
+            Event Operations Portal
           </h1>
-          <p className="text-lg leading-relaxed text-[#4a3e35]">
-            A curated workspace for managing guest lists, invites, and check-ins.
-            Accounts are created by the organizer only.
+          <p className="text-lg leading-relaxed text-[#334155]">
+            A consolidated workspace for guest credentials, invite governance,
+            and real-time check-in oversight across venues.
           </p>
-          <div className="rounded-2xl border border-[#d7c5b4] bg-white/70 p-6 shadow-[0_20px_60px_-40px_rgba(27,26,24,0.6)] backdrop-blur">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7a5b48]">
-              Access Policy
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#4a3e35]">
-              Invite-only access. If you need credentials, contact the event owner
-              for a manual account setup.
-            </p>
-          </div>
         </section>
 
-        <section className="w-full max-w-md rounded-[28px] border border-[#d9c9b9] bg-white px-7 py-8 shadow-[0_30px_70px_-45px_rgba(27,26,24,0.7)] sm:px-9">
+        <section className="w-full max-w-md rounded-[28px] border border-[#d6dbe7] bg-white px-7 py-8 shadow-[0_30px_80px_-45px_rgba(15,23,42,0.55)] sm:px-9">
           <div className="flex flex-col gap-2">
-            <p className="text-xs uppercase tracking-[0.3em] text-[#7a5b48]">
-              Member Login
-            </p>
-            <h2 className="text-2xl font-semibold text-[#1b1a18]">
-              Sign in to your dashboard
+            <h2 className="text-2xl font-semibold text-[#0f172a]">
+              Sign in
             </h2>
-            <p className="text-sm text-[#6b5a4a]">
-              Use the email and password provided by the organizer.
-            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
-            <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+            <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
               Email address
               <input
                 required
                 name="email"
                 type="email"
                 autoComplete="email"
-                placeholder="name@yourevent.com"
-                className="h-12 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+                placeholder="name@company.com"
+                className="h-12 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
-            <label className="flex flex-col gap-2 text-sm font-medium text-[#3f352c]">
+            <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
               Password
               <input
                 required
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                placeholder="Enter your password"
-                className="h-12 rounded-xl border border-[#d9c9b9] bg-[#fbf8f2] px-4 text-base text-[#1b1a18] outline-none transition focus:border-[#b35b2e] focus:ring-2 focus:ring-[#e6c1a9]"
+                placeholder="Enter your secure password"
+                className="h-12 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="mt-2 flex h-12 items-center justify-center rounded-full bg-[#1b1a18] text-sm font-semibold uppercase tracking-[0.25em] text-[#f4efe4] transition hover:bg-[#2a2724] disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-2 flex h-12 items-center justify-center rounded-xl bg-[#0f172a] text-sm font-semibold text-white shadow-[0_18px_40px_-24px_rgba(15,23,42,0.9)] transition hover:bg-[#1e293b] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              {status === "loading" ? "Authenticating..." : "Enter Workspace"}
+              {status === "loading" ? "Verifying access..." : "Continue to portal"}
             </button>
           </form>
 
@@ -125,8 +110,8 @@ export default function Home() {
             <p
               className={`mt-6 rounded-xl px-4 py-3 text-sm ${
                 status === "success"
-                  ? "bg-[#eff7f1] text-[#21523b]"
-                  : "bg-[#fff1ed] text-[#7a3327]"
+                  ? "bg-[#eff6ff] text-[#1e40af]"
+                  : "bg-[#fef2f2] text-[#991b1b]"
               }`}
               role="status"
             >

@@ -13,24 +13,26 @@ export default function EventBreadcrumbs({
 }: EventBreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#7a5b48]">
+      <ol className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
         <li>
-          <Link href="/dashboard" className="transition hover:text-[#1b1a18]">
+          <Link href="/dashboard" className="transition hover:text-[#0f172a]">
             Dashboard
           </Link>
         </li>
-        <li className="text-[#b7a79a]">/</li>
+        <li className="text-[#94a3b8]">/</li>
         <li>
           <Link
             href={`/dashboard/events/${eventId}/overview`}
-            className="transition hover:text-[#1b1a18]"
+            className="transition hover:text-[#0f172a]"
           >
             {eventName}
           </Link>
         </li>
-        <li className="text-[#b7a79a]">/</li>
-        <li className="text-[#1b1a18]">{current}</li>
+        <li className="text-[#94a3b8]">/</li>
+        <li className="text-[#0f172a]">{current}</li>
       </ol>
     </nav>
   );
 }
+
+
