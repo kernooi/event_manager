@@ -81,7 +81,7 @@ export default function RegistrationFieldsEditor({
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+      <div className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
         <div className="flex items-center justify-between gap-3">
           <div>
             <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
@@ -111,7 +111,7 @@ export default function RegistrationFieldsEditor({
           </p>
           <div className="mt-4 space-y-3">
             {fields.length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-[#d6dbe7] p-6 text-sm text-[#64748b]">
+              <div className="rounded-xl border border-dashed border-[#d6dbe7] p-6 text-sm text-[#64748b]">
                 No extra questions yet. Add a custom field to personalize the
                 form.
               </div>
@@ -119,7 +119,7 @@ export default function RegistrationFieldsEditor({
               fields.map((field) => (
                 <div
                   key={field.id}
-                  className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
+                  className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
                 >
                   <div>
                     <p className="text-sm font-semibold text-[#0f172a]">
@@ -149,7 +149,7 @@ export default function RegistrationFieldsEditor({
         </div>
       </div>
 
-      <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+      <div className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
         <div>
           <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
             Add Question
@@ -169,14 +169,14 @@ export default function RegistrationFieldsEditor({
               name="label"
               required
               placeholder="Dietary preference"
-              className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+              className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
             />
           </label>
           <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
             Field type
             <select
               name="type"
-              className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+              className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               value={fieldType}
               onChange={(event) => setFieldType(event.target.value)}
             >
@@ -192,7 +192,7 @@ export default function RegistrationFieldsEditor({
               <input
                 name="options"
                 placeholder="Vegetarian, Vegan, Halal"
-                className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
           ) : null}
@@ -216,5 +216,6 @@ export default function RegistrationFieldsEditor({
     </div>
   );
 }
+
 
 

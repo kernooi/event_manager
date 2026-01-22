@@ -155,7 +155,7 @@ export default async function EventOverviewPage({
   return (
     <DashboardShell userEmail={user.email} current="overview" eventId={event.id}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <EventBreadcrumbs
@@ -183,7 +183,7 @@ export default async function EventOverviewPage({
         </section>
 
         <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+          <div className="rounded-xl border border-[#d6dbe7] bg-white p-5 shadow-[0_10px_24px_-16px_rgba(15,23,42,0.22)]">
             <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Registered
             </p>
@@ -194,7 +194,7 @@ export default async function EventOverviewPage({
               {checkedInCount} checked in
             </p>
           </div>
-          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+          <div className="rounded-xl border border-[#d6dbe7] bg-white p-5 shadow-[0_10px_24px_-16px_rgba(15,23,42,0.22)]">
             <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Invites Sent
             </p>
@@ -205,7 +205,7 @@ export default async function EventOverviewPage({
               {usedInviteCount} claimed
             </p>
           </div>
-          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+          <div className="rounded-xl border border-[#d6dbe7] bg-white p-5 shadow-[0_10px_24px_-16px_rgba(15,23,42,0.22)]">
             <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Check-ins
             </p>
@@ -216,7 +216,7 @@ export default async function EventOverviewPage({
               {notCheckedInCount} remaining
             </p>
           </div>
-          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]">
+          <div className="rounded-xl border border-[#d6dbe7] bg-white p-5 shadow-[0_10px_24px_-16px_rgba(15,23,42,0.22)]">
             <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
               Custom Questions
             </p>
@@ -230,7 +230,7 @@ export default async function EventOverviewPage({
         </section>
 
         <div className="grid gap-6">
-          <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+          <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
@@ -251,7 +251,7 @@ export default async function EventOverviewPage({
               {recentAttendees.map((attendee) => (
                 <div
                   key={attendee.id}
-                  className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
+                  className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
                 >
                   <div>
                     <p className="font-semibold text-[#0f172a]">
@@ -267,7 +267,7 @@ export default async function EventOverviewPage({
                 </div>
               ))}
               {recentAttendees.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
+                <div className="rounded-xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   <p>
                     No registrations yet. Share the invite link to collect guest
                     details.
@@ -287,5 +287,6 @@ export default async function EventOverviewPage({
     </DashboardShell>
   );
 }
+
 
 

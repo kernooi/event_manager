@@ -53,7 +53,7 @@ export default function CreateEventCard() {
   }
 
   return (
-    <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+    <div className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
@@ -84,7 +84,7 @@ export default function CreateEventCard() {
               name="name"
               required
               placeholder="Summer Gala"
-              className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+              className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
             />
           </label>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -94,7 +94,7 @@ export default function CreateEventCard() {
                 name="startAt"
                 type="date"
                 required
-                className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
             <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
@@ -103,7 +103,7 @@ export default function CreateEventCard() {
                 name="endAt"
                 type="date"
                 required
-                className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
           </div>
@@ -112,7 +112,7 @@ export default function CreateEventCard() {
             <input
               name="location"
               placeholder="120 King Street, Brooklyn"
-              className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+              className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
             />
           </label>
           <button
@@ -132,5 +132,6 @@ export default function CreateEventCard() {
     </div>
   );
 }
+
 
 

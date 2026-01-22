@@ -302,7 +302,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     <div className="relative grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       {popout ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0f172a]/50 px-6">
-          <div className="w-full max-w-sm rounded-3xl border border-[#d6dbe7] bg-white p-6 text-center shadow-[0_30px_80px_-40px_rgba(15,23,42,0.65)]">
+          <div className="w-full max-w-sm rounded-2xl border border-[#d6dbe7] bg-white p-6 text-center shadow-[0_14px_30px_-18px_rgba(15,23,42,0.28)]">
             <div
               className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${
                 popout === "success"
@@ -349,7 +349,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
           </div>
         </div>
       ) : null}
-      <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+      <div className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
@@ -370,7 +370,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
           ) : null}
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-2xl border border-[#e2e8f0] bg-[#f8fafc]">
+        <div className="mt-6 overflow-hidden rounded-xl border border-[#e2e8f0] bg-[#f8fafc]">
           <video
             ref={videoRef}
             className="aspect-video w-full bg-[#0f172a] object-cover"
@@ -382,13 +382,13 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
         <div className="mt-4 space-y-2 text-sm">
           <p className="text-[#64748b]">{statusMessage}</p>
           {errorMessage ? (
-            <p className="rounded-xl bg-[#fef2f2] px-4 py-3 text-sm text-[#991b1b]">
+            <p className="rounded-lg bg-[#fef2f2] px-4 py-3 text-sm text-[#991b1b]">
               {errorMessage}
             </p>
           ) : null}
           {result ? (
             <p
-              className={`rounded-xl px-4 py-3 text-sm font-semibold ${
+              className={`rounded-lg px-4 py-3 text-sm font-semibold ${
                 result.status === "already_checked_in"
                   ? "bg-[#fef3c7] text-[#92400e]"
                   : "bg-[#ecfdf3] text-[#166534]"
@@ -400,7 +400,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
             </p>
           ) : null}
           {!canScan && startsAt ? (
-            <p className="rounded-xl bg-[#fef3c7] px-4 py-3 text-sm text-[#92400e]">
+            <p className="rounded-lg bg-[#fef3c7] px-4 py-3 text-sm text-[#92400e]">
               Check-in opens at {formatStartsAt(startsAt)}.
             </p>
           ) : null}
@@ -408,7 +408,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
 
         <form
           onSubmit={handleManualSubmit}
-          className="mt-6 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4"
+          className="mt-6 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
             Manual check-in
@@ -418,7 +418,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
               value={manualToken}
               onChange={(event) => setManualToken(event.target.value)}
               placeholder="Paste QR link or token"
-              className="h-11 flex-1 rounded-xl border border-[#d6dbe7] bg-white px-4 text-sm text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+              className="h-11 flex-1 rounded-lg border border-[#d6dbe7] bg-white px-4 text-sm text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
             />
             <button
               type="submit"
@@ -436,12 +436,12 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
         </form>
       </div>
 
-      <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+      <div className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
         <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
           Latest Scan
         </p>
         {result ? (
-          <div className="mt-4 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 text-sm text-[#64748b]">
+          <div className="mt-4 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4 text-sm text-[#64748b]">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-base font-semibold text-[#0f172a]">
               {result.attendeeName}
@@ -465,7 +465,7 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
             </p>
           </div>
         ) : (
-          <p className="mt-4 rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
+          <p className="mt-4 rounded-xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
             No scans yet. The most recent scan will appear here.
           </p>
         )}
@@ -473,5 +473,6 @@ export default function CheckInScanner({ eventId, startsAt }: CheckInScannerProp
     </div>
   );
 }
+
 
 

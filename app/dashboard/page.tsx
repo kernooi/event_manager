@@ -67,7 +67,7 @@ export default async function DashboardPage() {
   return (
     <DashboardShell userEmail={user.email} current="overview" eventId={null}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
             </div>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+            <div className="rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Total Events
               </p>
@@ -90,7 +90,7 @@ export default async function DashboardPage() {
                 Active planning pipelines.
               </p>
             </div>
-            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+            <div className="rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Total Registered
               </p>
@@ -101,7 +101,7 @@ export default async function DashboardPage() {
                 Guests across all events.
               </p>
             </div>
-            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+            <div className="rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Next Upcoming
               </p>
@@ -121,7 +121,7 @@ export default async function DashboardPage() {
 
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <CreateEventCard />
-          <div className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+          <div className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
             <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
               Status Overview
             </p>
@@ -134,7 +134,7 @@ export default async function DashboardPage() {
                 return (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
+                    className="flex items-center justify-between rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3"
                   >
                     <div>
                       <p className="font-semibold text-[#0f172a]">
@@ -151,7 +151,7 @@ export default async function DashboardPage() {
                 );
               })}
               {events.length === 0 ? (
-                <p className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
+                <p className="rounded-xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   Create your first event to see status insights.
                 </p>
               ) : null}
@@ -188,7 +188,7 @@ export default async function DashboardPage() {
               return (
                 <div
                   key={event.id}
-                  className="flex flex-col gap-4 rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]"
+                  className="flex flex-col gap-4 rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_10px_24px_-16px_rgba(15,23,42,0.22)]"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -230,7 +230,7 @@ export default async function DashboardPage() {
             })}
           </div>
           {events.length === 0 ? (
-            <div className="mt-6 rounded-3xl border border-dashed border-[#d6dbe7] bg-[#f8fafc] p-6 text-sm text-[#64748b]">
+            <div className="mt-6 rounded-2xl border border-dashed border-[#d6dbe7] bg-[#f8fafc] p-6 text-sm text-[#64748b]">
               No events yet. Create your first event to start collecting
               registrations.
             </div>
@@ -240,5 +240,6 @@ export default async function DashboardPage() {
     </DashboardShell>
   );
 }
+
 
 

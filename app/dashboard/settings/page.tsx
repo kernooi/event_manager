@@ -13,7 +13,7 @@ export default async function SettingsPage() {
   return (
     <DashboardShell userEmail={user.email} current="settings" eventId={null}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
             Settings
           </p>
@@ -26,7 +26,7 @@ export default async function SettingsPage() {
         </section>
 
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+          <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
             <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
               Password
             </p>
@@ -39,7 +39,7 @@ export default async function SettingsPage() {
             <PasswordChangeForm />
           </section>
 
-          <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+          <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
             <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
               Account
             </p>
@@ -57,5 +57,6 @@ export default async function SettingsPage() {
     </DashboardShell>
   );
 }
+
 
 

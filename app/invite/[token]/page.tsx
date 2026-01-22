@@ -23,7 +23,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
   if (!invite || invite.status === "USED") {
     return (
       <div className="min-h-screen bg-[#f5f7fb] px-6 py-16 text-[#0f172a]">
-        <div className="mx-auto max-w-xl rounded-3xl border border-[#d6dbe7] bg-white p-8 text-center shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <div className="mx-auto max-w-xl rounded-2xl border border-[#d6dbe7] bg-white p-8 text-center shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
             Invite Invalid
           </p>
@@ -39,7 +39,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
   if (invite.expiresAt && invite.expiresAt.getTime() < Date.now()) {
     return (
       <div className="min-h-screen bg-[#f5f7fb] px-6 py-16 text-[#0f172a]">
-        <div className="mx-auto max-w-xl rounded-3xl border border-[#d6dbe7] bg-white p-8 text-center shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <div className="mx-auto max-w-xl rounded-2xl border border-[#d6dbe7] bg-white p-8 text-center shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
             Invite Expired
           </p>
@@ -76,7 +76,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
             You are invited to register for this event. Complete the form to
             confirm your attendance.
           </p>
-          <div className="rounded-2xl border border-[#d6dbe7] bg-white/70 p-6 text-sm text-[#64748b] shadow-[0_20px_50px_-40px_rgba(15,23,42,0.5)]">
+          <div className="rounded-xl border border-[#d6dbe7] bg-white p-6 text-sm text-[#64748b] shadow-[0_10px_24px_-16px_rgba(15,23,42,0.2)]">
             After you submit, a QR code confirmation will be sent to your email.
           </div>
         </section>
@@ -90,5 +90,6 @@ export default async function InvitePage({ params }: InvitePageProps) {
     </div>
   );
 }
+
 
 

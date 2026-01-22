@@ -44,7 +44,7 @@ export default async function RegistrationPage({
       eventId={event.id}
     >
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <EventBreadcrumbs
             eventId={event.id}
             eventName={event.name}
@@ -64,5 +64,6 @@ export default async function RegistrationPage({
     </DashboardShell>
   );
 }
+
 
 

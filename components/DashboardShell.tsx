@@ -39,7 +39,7 @@ export default function DashboardShell({
       <header className="border-b border-[#d6dbe7] bg-[#f8fafc]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href="/dashboard" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0f172a] text-xs font-semibold uppercase tracking-[0.3em] text-[#f5f7fb]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0f172a] text-xs font-semibold uppercase tracking-[0.3em] text-[#f5f7fb]">
               EM
             </div>
             <div>
@@ -64,7 +64,7 @@ export default function DashboardShell({
 
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-8">
         {showEventNav ? (
-          <nav className="flex gap-2 overflow-x-auto rounded-2xl border border-[#d6dbe7] bg-white/70 p-3 text-sm shadow-[0_20px_50px_-40px_rgba(15,23,42,0.5)] backdrop-blur lg:hidden">
+          <nav className="flex gap-2 overflow-x-auto rounded-xl border border-[#d6dbe7] bg-white p-3 text-sm shadow-[0_10px_24px_-16px_rgba(15,23,42,0.2)] lg:hidden">
             {navItems.map((item) => {
               const isActive = item.key === current;
               const basePath = eventId
@@ -94,7 +94,7 @@ export default function DashboardShell({
 
         <div className="flex w-full gap-6">
           {showEventNav ? (
-            <aside className="hidden w-60 flex-col gap-2 rounded-2xl border border-[#d6dbe7] bg-white/70 p-4 text-sm shadow-[0_20px_50px_-40px_rgba(15,23,42,0.5)] backdrop-blur lg:flex">
+            <aside className="hidden w-60 flex-col gap-2 rounded-xl border border-[#d6dbe7] bg-white p-4 text-sm shadow-[0_10px_24px_-16px_rgba(15,23,42,0.2)] lg:flex">
               <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
                 Sections
               </p>
@@ -112,7 +112,7 @@ export default function DashboardShell({
                   <Link
                     key={item.key}
                     href={href}
-                    className={`rounded-xl px-3 py-2 transition ${
+                    className={`rounded-lg px-3 py-2 transition ${
                       isActive
                         ? "bg-[#0f172a] text-[#f5f7fb]"
                         : "text-[#64748b] hover:bg-[#f1f5f9] hover:text-[#0f172a]"
@@ -131,5 +131,6 @@ export default function DashboardShell({
     </div>
   );
 }
+
 
 

@@ -59,7 +59,7 @@ export default function DeleteEventButton({ eventId }: DeleteEventButtonProps) {
 
       {open ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="w-full max-w-md rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_30px_70px_-50px_rgba(15,23,42,0.7)]">
+          <div className="w-full max-w-md rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_14px_30px_-18px_rgba(15,23,42,0.28)]">
             <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
               Confirm Deletion
             </p>
@@ -88,14 +88,14 @@ export default function DeleteEventButton({ eventId }: DeleteEventButtonProps) {
                     value={typed}
                     onChange={(event) => setTyped(event.target.value)}
                     placeholder="DELETE"
-                    className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                    className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
                   />
                 </label>
               </div>
             )}
 
             {status === "error" ? (
-              <p className="mt-4 rounded-xl bg-[#fef2f2] px-4 py-3 text-sm text-[#991b1b]">
+              <p className="mt-4 rounded-lg bg-[#fef2f2] px-4 py-3 text-sm text-[#991b1b]">
                 Unable to delete. Please try again.
               </p>
             ) : null}
@@ -139,5 +139,6 @@ export default function DeleteEventButton({ eventId }: DeleteEventButtonProps) {
     </>
   );
 }
+
 
 

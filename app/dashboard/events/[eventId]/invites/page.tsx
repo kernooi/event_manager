@@ -49,7 +49,7 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
   return (
     <DashboardShell userEmail={user.email} current="invites" eventId={event.id}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <EventBreadcrumbs
             eventId={event.id}
             eventName={event.name}
@@ -64,7 +64,7 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
         </section>
 
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+          <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
@@ -78,7 +78,7 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
 
             <div className="mt-6 space-y-3">
               {invites.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
+                <div className="rounded-xl border border-dashed border-[#d6dbe7] p-4 text-sm text-[#64748b]">
                   <p>No invites yet. Send the first invite to start RSVPs.</p>
                   <Link
                     href="#send-invite"
@@ -99,7 +99,7 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
                   return (
                     <div
                       key={invite.id}
-                      className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-sm text-[#64748b]"
+                      className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3 text-sm text-[#64748b]"
                     >
                       <div>
                         <p className="font-semibold text-[#0f172a]">
@@ -136,5 +136,6 @@ export default async function InvitesPage({ params }: InvitesPageProps) {
     </DashboardShell>
   );
 }
+
 
 

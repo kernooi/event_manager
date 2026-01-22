@@ -9,7 +9,7 @@ export default function EventLoading() {
       showProfileMenu={false}
     >
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <div className="animate-pulse space-y-3">
             <div className="h-3 w-40 rounded-full bg-[#e2e8f0]" />
             <div className="h-7 w-64 rounded-full bg-[#e2e8f0]" />
@@ -21,7 +21,7 @@ export default function EventLoading() {
           {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={`stat-${index}`}
-              className="rounded-2xl border border-[#d6dbe7] bg-white p-5 shadow-[0_20px_45px_-35px_rgba(15,23,42,0.6)]"
+              className="rounded-xl border border-[#d6dbe7] bg-white p-5 shadow-[0_10px_24px_-16px_rgba(15,23,42,0.22)]"
             >
               <div className="animate-pulse space-y-3">
                 <div className="h-3 w-24 rounded-full bg-[#e2e8f0]" />
@@ -36,7 +36,7 @@ export default function EventLoading() {
           {Array.from({ length: 2 }).map((_, index) => (
             <section
               key={`panel-${index}`}
-              className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]"
+              className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]"
             >
               <div className="animate-pulse space-y-4">
                 <div className="h-3 w-32 rounded-full bg-[#e2e8f0]" />
@@ -45,7 +45,7 @@ export default function EventLoading() {
                   {Array.from({ length: 3 }).map((_, rowIndex) => (
                     <div
                       key={`row-${index}-${rowIndex}`}
-                      className="h-12 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc]"
+                      className="h-12 rounded-xl border border-[#e2e8f0] bg-[#f8fafc]"
                     />
                   ))}
                 </div>
@@ -57,5 +57,6 @@ export default function EventLoading() {
     </DashboardShell>
   );
 }
+
 
 

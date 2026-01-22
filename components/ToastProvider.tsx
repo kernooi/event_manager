@@ -83,7 +83,7 @@ export default function ToastProvider({
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`flex items-start justify-between gap-3 rounded-2xl border px-4 py-3 text-sm shadow-[0_20px_50px_-35px_rgba(15,23,42,0.5)] ${getToastStyles(
+            className={`flex items-start justify-between gap-3 rounded-xl border px-4 py-3 text-sm shadow-[0_10px_24px_-16px_rgba(15,23,42,0.2)] ${getToastStyles(
               toast.variant
             )}`}
           >
@@ -102,5 +102,6 @@ export default function ToastProvider({
     </ToastContext.Provider>
   );
 }
+
 
 

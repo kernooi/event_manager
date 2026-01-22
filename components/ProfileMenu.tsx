@@ -30,7 +30,7 @@ export default function ProfileMenu({ email }: ProfileMenuProps) {
       </button>
       {open ? (
         <div
-          className="absolute right-0 mt-3 w-52 rounded-2xl border border-[#d6dbe7] bg-white p-2 text-sm shadow-[0_20px_50px_-30px_rgba(15,23,42,0.65)]"
+          className="absolute right-0 mt-3 w-52 rounded-xl border border-[#d6dbe7] bg-white p-2 text-sm shadow-[0_10px_24px_-16px_rgba(15,23,42,0.22)]"
           role="menu"
         >
           <div className="px-3 py-2 text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
@@ -43,21 +43,21 @@ export default function ProfileMenu({ email }: ProfileMenuProps) {
           <Link
             href="/dashboard/profile"
             onClick={() => setOpen(false)}
-            className="flex w-full items-center rounded-xl px-3 py-2 text-left text-[#64748b] transition hover:bg-[#f1f5f9]"
+            className="flex w-full items-center rounded-lg px-3 py-2 text-left text-[#64748b] transition hover:bg-[#f1f5f9]"
           >
             Profile
           </Link>
           <Link
             href="/dashboard/settings"
             onClick={() => setOpen(false)}
-            className="flex w-full items-center rounded-xl px-3 py-2 text-left text-[#64748b] transition hover:bg-[#f1f5f9]"
+            className="flex w-full items-center rounded-lg px-3 py-2 text-left text-[#64748b] transition hover:bg-[#f1f5f9]"
           >
             Settings
           </Link>
           <button
             type="button"
             onClick={handleLogout}
-            className="mt-1 flex w-full items-center rounded-xl px-3 py-2 text-left font-medium text-[#b91c1c] transition hover:bg-[#fef2f2]"
+            className="mt-1 flex w-full items-center rounded-lg px-3 py-2 text-left font-medium text-[#b91c1c] transition hover:bg-[#fef2f2]"
           >
             Logout
           </button>
@@ -66,5 +66,6 @@ export default function ProfileMenu({ email }: ProfileMenuProps) {
     </div>
   );
 }
+
 
 

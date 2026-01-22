@@ -52,7 +52,7 @@ export default function InviteSender({ eventId }: InviteSenderProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]"
+      className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]"
       aria-busy={status === "loading"}
     >
       <div>
@@ -74,7 +74,7 @@ export default function InviteSender({ eventId }: InviteSenderProps) {
           type="email"
           required
           placeholder="guest@email.com"
-          className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+          className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
         />
       </label>
 
@@ -88,5 +88,6 @@ export default function InviteSender({ eventId }: InviteSenderProps) {
     </form>
   );
 }
+
 
 

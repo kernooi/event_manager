@@ -66,7 +66,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="w-full max-w-md rounded-[28px] border border-[#d6dbe7] bg-white px-7 py-8 shadow-[0_30px_80px_-45px_rgba(15,23,42,0.55)] sm:px-9">
+        <section className="w-full max-w-md rounded-2xl border border-[#d6dbe7] bg-white px-7 py-8 shadow-[0_14px_30px_-18px_rgba(15,23,42,0.25)] sm:px-9">
           <div className="flex flex-col gap-2">
             <h2 className="text-2xl font-semibold text-[#0f172a]">
               Sign in
@@ -82,7 +82,7 @@ export default function Home() {
                 type="email"
                 autoComplete="email"
                 placeholder="name@company.com"
-                className="h-12 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                className="h-12 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
             <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
@@ -93,14 +93,14 @@ export default function Home() {
                 type="password"
                 autoComplete="current-password"
                 placeholder="Enter your secure password"
-                className="h-12 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                className="h-12 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
               />
             </label>
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="mt-2 flex h-12 items-center justify-center rounded-xl bg-[#0f172a] text-sm font-semibold text-white shadow-[0_18px_40px_-24px_rgba(15,23,42,0.9)] transition hover:bg-[#1e293b] disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-2 flex h-12 items-center justify-center rounded-lg bg-[#0f172a] text-sm font-semibold text-white shadow-[0_10px_22px_-14px_rgba(15,23,42,0.35)] transition hover:bg-[#1e293b] disabled:cursor-not-allowed disabled:opacity-70"
             >
               {status === "loading" ? "Verifying access..." : "Continue to portal"}
             </button>
@@ -108,7 +108,7 @@ export default function Home() {
 
           {message ? (
             <p
-              className={`mt-6 rounded-xl px-4 py-3 text-sm ${
+              className={`mt-6 rounded-lg px-4 py-3 text-sm ${
                 status === "success"
                   ? "bg-[#eff6ff] text-[#1e40af]"
                   : "bg-[#fef2f2] text-[#991b1b]"
@@ -123,3 +123,4 @@ export default function Home() {
     </div>
   );
 }
+

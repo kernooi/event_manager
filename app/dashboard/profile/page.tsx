@@ -19,7 +19,7 @@ export default async function ProfilePage() {
   return (
     <DashboardShell userEmail={user.email} current="profile" eventId={null}>
       <div className="flex flex-col gap-6">
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
             Profile
           </p>
@@ -31,12 +31,12 @@ export default async function ProfilePage() {
           </p>
         </section>
 
-        <section className="rounded-3xl border border-[#d6dbe7] bg-white p-6 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+        <section className="rounded-2xl border border-[#d6dbe7] bg-white p-6 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
           <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
             Account details
           </p>
           <div className="mt-4 grid gap-3 text-sm text-[#64748b] sm:grid-cols-2">
-            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+            <div className="rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Email
               </p>
@@ -44,7 +44,7 @@ export default async function ProfilePage() {
                 {user.email}
               </p>
             </div>
-            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
+            <div className="rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Member since
               </p>
@@ -52,7 +52,7 @@ export default async function ProfilePage() {
                 {formatDate(user.createdAt)}
               </p>
             </div>
-            <div className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 sm:col-span-2">
+            <div className="rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4 sm:col-span-2">
               <p className="text-xs uppercase tracking-[0.2em] text-[#4c5b78]">
                 Account ID
               </p>
@@ -66,5 +66,6 @@ export default async function ProfilePage() {
     </DashboardShell>
   );
 }
+
 
 

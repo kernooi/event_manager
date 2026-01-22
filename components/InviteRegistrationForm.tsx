@@ -94,7 +94,7 @@ export default function InviteRegistrationForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-3xl border border-[#d6dbe7] bg-white p-8 text-center shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]">
+      <div className="rounded-2xl border border-[#d6dbe7] bg-white p-8 text-center shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]">
         <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
           Registration Complete
         </p>
@@ -109,7 +109,7 @@ export default function InviteRegistrationForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-[#d6dbe7] bg-white p-8 shadow-[0_25px_60px_-45px_rgba(15,23,42,0.6)]"
+      className="rounded-2xl border border-[#d6dbe7] bg-white p-8 shadow-[0_12px_28px_-18px_rgba(15,23,42,0.25)]"
     >
       <div>
         <p className="text-xs uppercase tracking-[0.28em] text-[#4c5b78]">
@@ -129,7 +129,7 @@ export default function InviteRegistrationForm({
           <input
             name="fullName"
             required
-            className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+            className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
           />
         </label>
         <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
@@ -139,7 +139,7 @@ export default function InviteRegistrationForm({
             type="number"
             min={0}
             required
-            className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+            className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
           />
         </label>
         <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
@@ -147,7 +147,7 @@ export default function InviteRegistrationForm({
           <select
             name="gender"
             required
-            className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+            className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
           >
             <option value="">Select a gender</option>
             <option value="FEMALE">Female</option>
@@ -163,7 +163,7 @@ export default function InviteRegistrationForm({
             name="email"
             type="email"
             required
-            className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+            className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
           />
         </label>
         <label className="flex flex-col gap-2 text-sm font-medium text-[#1f2937]">
@@ -172,7 +172,7 @@ export default function InviteRegistrationForm({
             name="phone"
             type="tel"
             required
-            className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+            className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
           />
         </label>
       </div>
@@ -195,7 +195,7 @@ export default function InviteRegistrationForm({
                   <select
                     name={fieldName}
                     required={field.required}
-                    className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                    className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
                   >
                     <option value="">Select an option</option>
                     {(field.options ?? []).map((option) => (
@@ -244,7 +244,7 @@ export default function InviteRegistrationForm({
                   name={fieldName}
                   type={field.type === "NUMBER" ? "number" : "text"}
                   required={field.required}
-                  className="h-11 rounded-xl border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
+                  className="h-11 rounded-lg border border-[#d6dbe7] bg-[#f8fafc] px-4 text-base text-[#0f172a] outline-none transition focus:border-[#2563eb] focus:ring-2 focus:ring-[#bfdbfe]"
                 />
               </label>
             );
@@ -262,7 +262,7 @@ export default function InviteRegistrationForm({
 
       {message ? (
         <p
-          className={`mt-4 rounded-xl px-4 py-3 text-sm ${
+          className={`mt-4 rounded-lg px-4 py-3 text-sm ${
             status === "error"
               ? "bg-[#fef2f2] text-[#991b1b]"
               : "bg-[#eff6ff] text-[#166534]"
@@ -275,5 +275,6 @@ export default function InviteRegistrationForm({
     </form>
   );
 }
+
 
 
